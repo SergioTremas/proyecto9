@@ -20,7 +20,7 @@ class LoginService{
 
         if($login->getByEmail($login->email)){
             $login = new LoginModel();
-         
+                     
             return $login;
             
         }else{

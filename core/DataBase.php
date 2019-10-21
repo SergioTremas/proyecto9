@@ -1,8 +1,8 @@
 <?php
 
-//require("/xampp/htdocs/proyecto9/config.php");
 
-require(PRODUCT_MODEL);
+
+
 //defined('BASEPATH') or exit('No se permite acceso directo');
 
 /**

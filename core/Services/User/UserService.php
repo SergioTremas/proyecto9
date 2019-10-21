@@ -72,8 +72,8 @@ class UserService{
 
     }
 
-    public function update(UserModel $userModel){
-        $this->modelUser->updateUser($userModel);
+    public function update(UserModel $model){
+        $model->updateUser($model);
     }
 
     public function insert(UserModel $model){

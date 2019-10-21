@@ -27,8 +27,10 @@ define('PATH_CONTROLLERS', 'controller/');
 define('USER_MODEL', PATH_MODELS . '/User/UserModel.php');
 define('LOGIN_MODEL', PATH_MODELS . '/Login/LoginModel.php');
 define('LEVEL_MODEL',PATH_MODELS. '/Level/LevelModel.php');
+define('CATEGORY_MODEL',PATH_MODELS. '/Category/CatgoryModel.php');
+define('CATEGORYFHATER_MODEL',PATH_MODELS. '/CategoryFatherModel/CategoryFatherModel.php');
+define('PRODUCT_MODEL', PATH_MODELS. '/Product/ProductModel.php' );
 
-define('PRODUCT_MODEL', PATH_MODELS . '/Product/ProductModel.php');
 
 //SERVICES
 
