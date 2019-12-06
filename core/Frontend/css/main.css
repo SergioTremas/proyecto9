@@ -58,6 +58,14 @@
     background-color: rgba(0,0,0,.3);
 }
 
+.m-t-20 {
+    margin-top: 20px;
+}
+
+.m-t-40 {
+    margin-top: 40px;
+}
+
 body {
     background-color: #fff;
     font-family: "OpenSans";
@@ -3026,7 +3034,6 @@ blockquote {
     unicode-bidi: bidi-override;
     direction: rtl;
     font-size: 12px;
-    text-align: center;
 }
 
 #review .product-rating .stars span.star {
