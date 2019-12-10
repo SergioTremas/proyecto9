@@ -1,0 +1,86 @@
+<div class="container mt-5 mb-5">
+
+
+
+
+
+
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <p class="text-center">Crea tu cuenta</p>
+
+
+            <form>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Full name" type="text">
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email address" type="email">
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+
+                    <input name="" class="form-control" placeholder="Phone number" type="number">
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 120px;">
+
+                      <option selected="" *ngFor=""></option>
+
+                  </select>
+                    <input name="" class="form-control" placeholder="Pais de resisdencia" type="text">
+                </div>
+                <!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 120px;">
+
+                      <option selected="" *ngFor=""></option>
+
+                  </select>
+                    <input name="" class="form-control" placeholder="Ciudad de resisdencia" type="text">
+                </div>
+                <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Create password" type="password">
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Repeat password" type="password">
+                </div>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                </div>
+                <!-- form-group// -->
+                <p class="text-center">Ya tienes cuenta? <a [routerLink]="['/login']">Log In</a> </p>
+            </form>
+        </article>
+    </div>
+    <!-- card.// -->
+
+</div>

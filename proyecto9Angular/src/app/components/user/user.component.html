@@ -1,0 +1,11 @@
+<p>pagina user {{user.names}}</p>
+nombre
+
+<input type="button" value="" (click)="setOpcion()">
+
+<div *ngIf="opcion">
+    <app-edit-user></app-edit-user>
+</div>
+<div *ngIf="!opcion">
+    <app-valuations [idUser]='user.idUser'></app-valuations>
+</div>

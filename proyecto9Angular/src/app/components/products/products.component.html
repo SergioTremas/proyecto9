@@ -1,0 +1,79 @@
+<div *ngFor='let pro of productos'>
+
+    <h2>{{ pro.nameProduct }}</h2>
+    <p>{{ pro.description }}</p>
+
+</div>
+
+<div class="card" style="width: 18rem;" *ngFor="let item of productos">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{item.nameProduct}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <a href="#" [routerLink]="['/singleProduct', item.idProduct]" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+
+<!-- (click)=singleProduct(item.idProduct) -->
+
+<section>
+    <div class="block2 color-scheme-2">
+        <div class="container">
+            <div class="block-product-tab">
+                <div class="tab-line"></div>
+                <div class="toolbar-for-light" id="nav-tabs">
+                    <a href="javascript:;" data-role="prev" class="prev"><i class="fa fa-angle-left"></i></a>
+                    <a href="javascript:;" data-role="next" class="next"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <ul class="nav nav-pills">
+                    <li class="active"><a href="#featured" data-toggle="tab" class="disabled">Featured</a>
+                        <div class="header-bottom-line"></div>
+                    </li>
+                </ul>
+                <div class="tab-pane animated fadeIn" id="featured">
+                    <div class="row">
+                        <div id="owl-featured" class="owl-carousel">
+
+                            <div class="text-center item">
+                                <article class="product" *ngFor='let pro of productos'>
+                                    <div class="product-new">new</div>
+                                    <figure class="figure-hover-overlay">
+                                        <a href="#" class="figure-href"></a>
+                                        <img class="img-overlay img-responsive" [src]="'/../../assets/imgProducts/'+pro.photo" alt="" title="">
+                                        <img class="img-responsive" [src]="'/../../assets/imgProducts/'+pro.photo" alt="{{ pro.nameProduct }}" title="">
+                                    </figure>
+                                    <div class="product-caption">
+                                        <div class="block-name">
+                                            <a href="#" class="product-name">{{ pro.nameProduct }}</a>
+                                            <div class="product-rating">
+                                                <div class="stars">
+                                                    <span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
+                                                </div>
+                                            </div>
+                                            <p class="product-price"> $120.99</p>
+
+                                        </div>
+                                        <div class="product-icons">
+                                            <div class="product-icon">
+                                                <a href="#" class="product-compare" title="Compare"><i class="fa fa-random"></i></a>
+                                            </div>
+                                            <div class="product-icon">
+                                                <a href="#" class="product-card-icon" title="Ver Producto"><i class="fa fa-eye"></i>  Ver Producto </a>
+                                            </div>
+                                            <div class="product-icon">
+                                                <a href="#" class="product-wishlist" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

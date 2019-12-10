@@ -1,0 +1,9 @@
+<h1> nombre {{Product.nameProduct}}</h1>
+<h2>{{Product.photo}}</h2>
+<h4>{{Product.idProduct}}</h4>
+
+
+<app-valuations [id]='Product.idProduct'></app-valuations>
+
+
+<app-intro-valuation [id]='Product.idProduct' *ngIf="newValue"></app-intro-valuation>

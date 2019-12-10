@@ -1,0 +1,21 @@
+<form>
+
+    <div id="full" class="container mt-5">
+
+        <div class="form-row">
+
+            <div>
+                <label for="inputAddress2">opinion</label>
+                <input [(ngModel)]="valuation.opinion" name="opinion" type="text" class="form-control">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nota">Nota</label>
+                    <input type="number" (keyup)="imprimir()" name='asses' [(ngModel)]="valuation.asses" class="form-control" id="inputCity">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+        </div>
+    </div>
+</form>

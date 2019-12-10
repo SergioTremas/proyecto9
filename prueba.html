@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="palabra">
+
+    <script>
+        $(document).ready(function() {
+
+            $("#palabra").keyup(function() {
+
+                var DatosEnviar = {
+
+                    objeto: "lkfjglfjglfjlkgjfnlkg"
+                        //pass: $("#pass").val(),
+
+                }
+
+                $.post("http://localhost/proyecto9/core/Controllers/objeto.php", DatosEnviar, datos);
+
+                function datos(dato) {
+                    //console.log(dato);
+                    dato = JSON.parse(dato);
+
+
+                    var palabras = "";
+
+                    // for (let i = 0; i < dato.length; i++) {
+                    //     console.log('array');
+                    //     if (palabras !== "") {
+                    //         palabras = palabras + ", ";
+                    //     }
+                    //     palabras = palabras + dato[i].palabra;
+
+                    // }
+
+
+                    console.log(dato);
+                    // $("#palabra").val(dato[0].palabra + ", ");
+                }
+
+
+            });
+
+
+
+
+
+
+            $("#boton").click(function() {
+
+                var DatosEnviar = {
+
+                    id: $("#mail").val()
+                        //pass: $("#pass").val(),
+
+                }
+
+                $.post("http://localhost/servicio/ControladorVer.php", DatosEnviar, datos);
+
+                function datos(dato) {
+
+                    //var Datoj = JSON.parse(dato);
+                    dato = JSON.parse(dato)
+                    console.log(dato);
+                    console.log('dato.lenght + 1');
+
+                    $("#texto").append(dato);
+
+
+                    $("#texto").append("<p>'" + dato[0].nombre + "'</p>");
+
+                    for (var i = 0; i < dato.lenght; i++) {
+
+                        $("#texto").append("<p>'" + dato[i].nombre + dato[i].apellido + "'</p>");
+
+                    }
+                }
+            });
+
+        });
+    </script>
+
+
+    <div id="texto">
+
+
+
+    </div>
+
+</body>
+
+</html>

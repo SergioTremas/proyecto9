@@ -1,0 +1,15 @@
+<h2>
+    Valoraciones</h2>
+<div *ngIf="valuations.length>0">
+
+</div>
+<div *ngFor="let item2 of valuations">
+
+    nota: {{item2.asses}}<br> usuario:{{item2.nameUser}}<br> opinion {{item2.opinion}}
+
+</div>
+
+<div *ngIf="valuationsUser.length>0">
+    <div *ngFor="let item3 of valuationsUser">{{item3.asses}} {{item3.opinion}}</div>
+
+</div>
