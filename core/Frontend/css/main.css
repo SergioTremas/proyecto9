@@ -66,6 +66,10 @@
     margin-top: 40px;
 }
 
+.f-right {
+    float: right;
+}
+
 body {
     background-color: #fff;
     font-family: "OpenSans";
