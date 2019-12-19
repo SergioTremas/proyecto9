@@ -8,6 +8,8 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
 require(PRODUCT_SERVICES);
 require(PRODUCT_MODEL);
+require(USER_MODEL);
+
 
 
     //$json = file_get_contents('php://input');
@@ -60,11 +62,18 @@ switch ($i) {
        
         break;
 
-        case "letter":
+    case "letter":
 
         $reply=$service->getAllbyLetter($nameProduct);
            
         break;
+
+    case "letterAndCat":
+
+            $reply=$service->getbyLetterCat($nameProduct,$category);
+               
+            break;
+    
 
     case "delete":
 
@@ -94,6 +103,11 @@ switch ($i) {
 
         $reply=$service->getByCategory($category);
        
+        break;
+    case "getCategory":
+
+        $reply=$ser->getCategory($category);
+           
         break;
 }
 

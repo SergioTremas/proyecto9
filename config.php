@@ -34,6 +34,7 @@ define('CITY_MODEL', PATH_MODELS. '/City/CityModel.php' );
 define('COUNTRY_MODEL', PATH_MODELS. '/Country/CountryModel.php' );
 define('ROL_MODEL', PATH_MODELS. '/Rol/RolModel.php' );
 define('ASSES_MODEL', PATH_MODELS. '/Asses/AssesModel.php' );
+define('COUNTRY_MODEL_TRUE', PATH_MODELS. '/Country/CountryModelTrue.php');
 
 
 

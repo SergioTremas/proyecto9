@@ -9,31 +9,9 @@ import { User } from '../models/user';
 })
 export class UserService {
 
+  url ='http://localhost/proyecto9/core/Controllers/UserController.php';
 
-
-  constructor(private http: HttpClient, private login : LoginService) {
-
-
-//     this.user = new User();
-//     this.user.idUser = '';
-//     this.user.names = '';
-//     this.user.surname = '';
-//     this.user.email = '';
-//     this.user.idCountry = '';
-//     this.user.country = '';
-//     this.user.idCity = '';
-//     this.user.city = '';
-//     this.user.numberAsses = '';
-//     this.user.dataAdd = '';
-//     this.user.rol = '';
-//     this.user.login = '';
-//     this.user.level = '';
-//     this.user.action = '';
-//     this.user.token = '';
-
-
-
-   }
+  constructor(private http: HttpClient, private login : LoginService) {}
 
    generarCookieIDUser(valor){
 
@@ -78,6 +56,16 @@ getByToken() {
 
 
 
+}
+
+insert(user: User) {
+
+  let url ='http://localhost/proyecto9/core/Controllers/UserController.php';
+
+
+  user.action = 'insert';
+
+  return this.http.post(url, JSON.stringify(user));
 }
 
 

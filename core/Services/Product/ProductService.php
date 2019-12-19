@@ -3,10 +3,13 @@
 class ProductService{
   
     private $modelProduct;
+    private $modelUser;
 
     public function __construct(){
 
         $this->modelProduct = new ProductModel();
+        $this->modelUser = new UserModel();
+
        
 
     }
@@ -21,6 +24,10 @@ class ProductService{
 
        return $this->modelProduct->getAllbyLetter($leter);
 
+    }
+
+    public function getbyLetterCat(string $letter, string $idCat){
+        return $this->modelProduct->getByLetterCategory($letter,$idCat);
     }
 
 
@@ -50,7 +57,13 @@ class ProductService{
     }
 
     public function getAVG($id1){
-      return  $this->modelProduct->getAVG($id1);
+      $allAsses= $this->modelProduct->getSumAsses($id1);
+      $allLevels= $this->modelUser->getSumLevels($id1);
+
+      $AVG= $allAsses/$allLevels;
+      return $AVG;
+
+
     }
 
     public function getByCCAA($idCCAA){
@@ -62,6 +75,10 @@ class ProductService{
         
         return $this->modelProduct->getProductsByCategory($idCat);
     }
+
+    
+
+ 
 
 
 }

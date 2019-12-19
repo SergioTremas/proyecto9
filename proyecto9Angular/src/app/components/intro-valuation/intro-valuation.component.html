@@ -1,4 +1,4 @@
-<form>
+<!-- <form>
 
     <div id="full" class="container mt-5">
 
@@ -18,4 +18,34 @@
             </div>
         </div>
     </div>
+</form> -->
+
+<form role="form" method="post" action="#" *ngIf="(ValueDone) ">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <textarea [class.read-only]="justDone" value="1" class="form-control" name="opinion" (keyup)="imprimir()" [(ngModel)]="valuation.opinion"> </textarea>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="control-label">Valoración:</label>
+                <div class="product-rating">
+                    <div class="stars">
+                        <span class="star" (click)="insertStars(5)" #star5></span><span class="star" value="2" (click)="insertStars(4)" #star4></span><span class="star" value="3" (click)="insertStars(3)" #star3></span><span class="star" value="" (click)="insertStars(2)"
+                            #star2></span>
+                        <span class="star" value="5" (click)="insertStars(1,1)" #star1></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input #boton (click)="insertValuations()" type="submit" class="btn-default" value="Añadir Valoracion">
 </form>
+<div class="row" *ngIf="!ValueDone">
+    <h3>Ya has Valorado este Producto</h3>
+</div>
+<div class="row" *ngIf="justDone">
+    <h3>Gracias por valorar este producto</h3>
+</div>

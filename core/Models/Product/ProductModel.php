@@ -5,8 +5,12 @@ require_once(DATA_BASE);
 class ProductModel extends DataBase{
 
 
+    private $modelUser;
+
     public function __construct() {
-	    parent::__construct();
+        parent::__construct();
+        
+        $this->modelUser = new UserModel();
 	}
 
 
@@ -50,6 +54,16 @@ class ProductModel extends DataBase{
         parent::insert($sentence);   
     }
 
+    public function getAVG($id1){
+        $allAsses= $this->getSumAsses($id1);
+        $allLevels= $this->modelUser->getSumLevels($id1);
+  
+        $AVG= $allAsses/$allLevels;
+        return $AVG;
+  
+  
+      }
+
 
 
     public function getById($id1){
@@ -73,7 +87,7 @@ class ProductModel extends DataBase{
             $this->photo=$x[3];
             $this->idCategory=$x[4];
             $this->nameCategory=$x[5];
-            $this->valueAVG=$x[6];
+            $this->valueAVG=$this->getAVG($x[0]);
 
 		   }
 
@@ -85,9 +99,9 @@ class ProductModel extends DataBase{
 
     }
 
-    public function getAVG($id1){
+    public function getSumAsses($id1){
 
-        $sentence="SELECT AVG(`asses`) FROM `assesment` WHERE `idProduct`=$id1";
+        $sentence="select sum(asses) from assesment WHERE `idProduct`=$id1";
 
         try {
 	        
@@ -158,6 +172,14 @@ class ProductModel extends DataBase{
  
         return $this->getBy($sentence);
             
+     }
+
+     public function getByLetterCategory(string $letter, string $idCat){
+
+        $sentence="SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, product.photo , categoryproduct.idCategory, category.nameCategory FROM `categoryproduct` inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on categoryproduct.idProduct=product.idProduct where product.nameProduct like '$letter%' AND categoryproduct.idCategory='$idCat'";
+ 
+        return $this->getBy($sentence);
+
      }
     
     private function getBy($sentence){

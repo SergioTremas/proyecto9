@@ -1,0 +1,10 @@
+<h3>Advanced</h3>
+<p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)" (keyup)="getCpuntries()" [size]=" 30 " [minLength]="1 " placeholder="Hint: type 'v' or 'f' " [dropdown]="true ">
+    <ng-template let-brand pTemplate="item ">
+        <div class="ui-helper-clearfix " style="border-bottom:1px solid #D5D5D5 ">
+
+            <div style="font-size:18px;float:right;margin:10px 10px 0 0 ">{{brand}}</div>
+        </div>
+    </ng-template>
+</p-autoComplete>
+<span style="margin-left:50px ">Brand: {{brand||'none'}}</span>

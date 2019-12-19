@@ -1,13 +1,14 @@
 export class Valuation1 {
 
-  action:String;
-  idProduct:String;
-  nameProduct:String;
-  idUser:String;
-  nameUser:String;
-  asses:String;
-  opinion:String;
-  assesfirst:String;
+  action:string;
+  idProduct:string;
+  nameProduct:string;
+  idUser:string;
+  nameUser:string;
+  asses:string;
+  opinion:string;
+  assesfirst:string;
+  date: string;
 
 
 

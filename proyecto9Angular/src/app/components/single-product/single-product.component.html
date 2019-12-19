@@ -1,9 +1,77 @@
-<h1> nombre {{Product.nameProduct}}</h1>
-<h2>{{Product.photo}}</h2>
-<h4>{{Product.idProduct}}</h4>
+<section class="m-t-40">
+    <div class="second-page-header dark">
+        <div class="container">
+            <h2>Producto</h2>
+
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block2">
+        <div class="container">
+            <div class="block-product-detail">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div>
+                            <img [src]="imgUrl" alt="">
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 
-<app-valuations [id]='Product.idProduct'></app-valuations>
+                        <div class="product-detail-section">
+                            <h3>{{Product.nameProduct}}</h3>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <span [class.active]="Product.valueAVG>4" class="star "></span><span [class.active]="Product.valueAVG>3" class="star  "></span><span [class.active]="Product.valueAVG>2" class="star  "></span><span [class.active]="Product.valueAVG>1"
+                                        class="star  "></span><span [class.active]="Product.valueAVG>0" class="star  "></span>
+                                </div>
+
+                                <a href="" class="review">10 Reviews</a>
+                            </div>
 
 
-<app-intro-valuation [id]='Product.idProduct' *ngIf="newValue"></app-intro-valuation>
+
+                            <div class="box-border block-form">
+                                <!-- Nav tabs -->
+                                {{Product.description}}
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="description">
+                                        <br>
+                                        <h3>Product Details</h3>
+                                        <hr>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                    </div>
+
+                                    <div class="tab-pane active" id="review">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <hr>
+                                                <app-valuations [id]='Product.idProduct'></app-valuations>
+
+                                            </div>
+                                        </div>
+
+                                        <app-intro-valuation [id]='Product.idProduct' *ngIf="newValue"></app-intro-valuation>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

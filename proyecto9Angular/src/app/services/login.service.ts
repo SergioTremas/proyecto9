@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/login';
 import { CookieService } from 'ngx-cookie-service';
+import { Country } from '../models/country';
 
 
 
@@ -10,7 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginService {
 
-   public url='http://localhost/proyecto9/core/Controllers/LoginController.php';
+   public url = 'http://localhost/proyecto9/core/Controllers/LoginController.php';
+   public urlCountry = 'http://localhost/proyecto9/core/Controllers/CountryController.php';
 
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
@@ -19,6 +21,33 @@ export class LoginService {
   checklogin(login: string) {
 
     return this.http.post(this.url, login );
+
+  }
+  checkEmailForLetter(letter){
+
+
+    let login = new Login();
+
+    login.action="checkEmail";
+    login.email=letter;
+    login.idLogin="";
+    login.pass="";
+    login.token="";
+
+
+    return this.http.post(this.url, JSON.stringify(login));
+  }
+
+  getCountryByLetter(letter:string){
+
+    let country= new Country();
+
+    country.countryName = letter;
+    country.idCountry = '';
+    country.action = 'getByLetter';
+
+    return this.http.post(this.urlCountry, JSON.stringify(country));
+
 
   }
 
@@ -80,6 +109,14 @@ export class LoginService {
 
     this.http.post(this.url,JSON.stringify(login) ).subscribe();
 
+  }
+
+  insert(login:Login){
+
+     login.action="insert";
+     login.token="";
+
+     return this.http.post(this.url, JSON.stringify(login));
   }
 
 }

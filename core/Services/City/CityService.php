@@ -16,7 +16,7 @@ class CItyService{
     }
 
     public function insert( $cityString){
-        $this->modelCIty->insertCity($cityString);
+      return  $this->modelCIty->insertCity($cityString);
 
     }
 

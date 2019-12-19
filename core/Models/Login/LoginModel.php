@@ -31,6 +31,27 @@ class LoginModel extends DataBase {
 	    return	$id1;
 
 	}
+	public function checkEmail(string $letter) {
+
+	    try {
+	        
+           $query =parent::prepare("SELECT * FROM login where email = '$letter'");
+           
+	       $query->execute();
+
+           $res= $query->fetchAll();
+           
+            if(count($res)>0){
+                return true;
+            }else{
+                return false;
+            }
+
+	    } catch (\PDOException $e) {
+	        print "Error!: " . $e->getMessage();
+	    }
+	}
+	
 
 	public function updateLogin(LoginModel $model){
 

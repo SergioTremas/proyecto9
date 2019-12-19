@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-require("c:xampp/htdocs/proyecto9/config.php");
+require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
 require(ASSES_MODEL);
 require(ASSES_SERVICES);
 require(USER_MODEL);
@@ -27,7 +27,7 @@ $reply= new AssesModel();
 $service = new AssesService();
 
 
-
+ 
            $reply->idProduct=$objeto->idProduct;
            $reply->opinion=$objeto->opinion;
            $reply->idUser= $objeto->idUser;

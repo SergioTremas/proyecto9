@@ -12,6 +12,11 @@ class LoginService{
         $this->login = new LoginModel();
 
     }
+
+    public function checkEmail(string $letter) {
+
+        return $this->login->checkEmail($letter);
+    }
   
 
     //Devuelve un usuario vacio si no esta en la BDD o el objeto usuario correspondiente
@@ -36,8 +41,8 @@ class LoginService{
             return $login;
             
         }else{
-          $login->insertLogin($login);
-          return $login;
+          $id1 = $login->insertLogin($login);
+          return $id1;
             
         }
 

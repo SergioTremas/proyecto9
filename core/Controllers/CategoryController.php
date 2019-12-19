@@ -1,24 +1,28 @@
 <?php
-header("Access-Control-Allow-Origin:  http://localhost");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 
 
-require("c:xampp/htdocs/proyecto9/config.php");
+require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
 require(CATEGORY_MODEL);
 require(CATEGORY_SERVICES);
 
+$json = file_get_contents('php://input');
+ $objeto = json_decode($json);
+
+ if($json==""){
+     $objeto= new CategoryModel();
+     $objeto->idCategory=$_GET['idCategory'];
+     $objeto->idCategoryFather=$_GET['idCategoryFather'];
+     $objeto->nameCategory=$_GET['nameCategory'];
+     $objeto->action=$_GET['action'];
+ }
 
 
 
-    $idCategory=isset($_GET['idCategory'])? $_GET['idCategory'] : $_POST[('idCategory')];
-    $nameCategory=isset($_GET['nameCategory'])? $_GET['nameCategory'] : $_POST[('nameCategory')];
-    
-    $idFather=isset($_GET['idFather'])? $_GET['idFather'] : $_POST[('idFather')];
-   
 
-    $i =isset($_GET['action'])? $_GET['action'] : $_POST[('action')];
-
+ $i =$objeto->action;
 
 
 $reply= new CategoryModel();
@@ -26,9 +30,9 @@ $reply= new CategoryModel();
 $service = new CategoryService();
 
 
-           $reply->idCategory=$idCategory;
-           $reply->nameCategory=$nameCategory;       
-           $reply->idCategoryFather= $idFather;
+           $reply->idCategory=$objeto->idCategory;
+           $reply->nameCategory=$objeto->nameCategory;       
+           $reply->idCategoryFather= $objeto->idCategoryFather;
            
 
 switch ($i) {
@@ -54,7 +58,7 @@ switch ($i) {
 
     case "getByID":
 
-          $reply = $service->getByID($idCategory);
+          $reply = $service->getByID($reply->idCategory);
       
         break;
 
@@ -72,20 +76,6 @@ switch ($i) {
 
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

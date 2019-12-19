@@ -140,7 +140,7 @@ class CategoryModel extends DataBase{
             $arrayCategory[]=$model;
 
 		   }
-
+		   
 		   return $arrayCategory;
 
 	    } catch (\PDOException $e) {

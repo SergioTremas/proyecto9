@@ -1,11 +1,11 @@
 export class Valuation {
 
- idProduct: String;
- nameProduct: String;
- idUser: String;
- nameUser: String;
- asses: String;
- opinion: String;
- assesfirst: String;
- action: String;
+ idProduct: string;
+ nameProduct: string;
+ idUser: string;
+ nameUser: string;
+ asses: string;
+ opinion: string;
+ assesfirst: string;
+ action: string;
 }

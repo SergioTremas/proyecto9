@@ -25,13 +25,15 @@ class CityModel extends DataBase{
 	        print "Error!: " . $e->getMessage();
         }
         
-        if (!$res>0) {
+        // if (!$res>0) {
             $sentence ="INSERT INTO `city`( `nameCity`) VALUES ('$nameCity')";
 
             $id1= parent::insert($sentence);
             $this->idCity=$id1;
-            $this->nameCity= $nameCity;
-        }	    
+			$this->nameCity= $nameCity;
+			
+			return $this->idCity;
+       // }	    
 
 	}
 

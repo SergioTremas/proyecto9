@@ -84,7 +84,7 @@ export class ValuationsComponent implements OnInit {
 
        this.serviceValuations.getByProduct(JSON.stringify(this.valuation)).subscribe((data:any)=>{
 
-
+console.log(data);
       this.valuations = data;
 
   });

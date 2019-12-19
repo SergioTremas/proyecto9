@@ -12,6 +12,37 @@ class CountryModel extends DataBase{
     public $countryName;
     
 
+	public function getByLetter(string $letter){
+
+		
+
+		try {
+	        
+	        $query =parent::prepare("SELECT `idCountry`, `countryName` FROM `country` WHERE countryName like '$letter%'");
+	        $query->execute();
+
+		   $res= $query->fetchAll();
+
+		   $arraycountry= array();
+		   
+		   foreach($res as $x){
+
+            $model = new CountryModelTrue();
+            $model->idCountry= $x[0];
+            $model->countryName=$x[1];
+           
+            
+            $arraycountry[]=$model;
+
+		   }
+
+		   return $arraycountry;
+
+	    } catch (\PDOException $e) {
+	        print "Error!: " . $e->getMessage();
+	    }
+
+	}
 
 
 	public function insertcountry($countryName){
@@ -28,14 +59,15 @@ class CountryModel extends DataBase{
 	        print "Error!: " . $e->getMessage();
         }
         
-        if(!$res>0){
+       // if(!$res>0){
 	$sentence ="INSERT INTO `country`( `countryName`) VALUES ('$countryName')";
 
 		$id1= parent::insert($sentence);
 		$this->idCountry=$id1;
 		$this->countryName= $countryName;
+		return $this->idCountry;
 
-        }
+       // }
 
         
 
@@ -107,12 +139,13 @@ class CountryModel extends DataBase{
 		   
 		   foreach($res as $x){
 
-            $model = new countryModel();
+            $model = new CountryModelTrue();
             $model->idCountry= $x[0];
             $model->countryName=$x[1];
-           
+		   
+			array_push($arraycountry,$model);
             
-            $arraycountry[]=$model;
+            //$arraycountry[]=$model;
 
 		   }
 

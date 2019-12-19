@@ -11,8 +11,12 @@ class CountryService{
 
     }
 
+    public function getByLetter(string $letter){
+       return $this->modelCountry->getByLetter($letter);
+    }
+
     public function insert( $countryString){
-        $this->modelCountry->insertcountry($countryString);
+      return  $this->modelCountry->insertcountry($countryString);
 
     }
 

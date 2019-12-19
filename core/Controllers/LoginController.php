@@ -4,7 +4,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-require("c:xampp/htdocs/proyecto9/config.php");
+require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
 require(LOGIN_MODEL);
 require(LOGIN_SERVICES);
 require(USER_MODEL);
@@ -32,6 +32,12 @@ $reply->token=$objeto->token;
 
 switch ($i) {
 
+    case "checkEmail":
+
+        $token= $service->checkEmail($reply->email);
+         
+         break;
+
     case "check":
 
        $token= $service->checkLogin($reply);
@@ -47,13 +53,13 @@ switch ($i) {
 
     case "insert":
 
-        $service->insertLogin($reply);
+       $token= $service->insertLogin($reply);
        
         break;
 
     case "delete":
         
-        $service->delete($id);
+       // $service->delete($id);
         
         break;
 

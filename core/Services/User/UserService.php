@@ -4,11 +4,22 @@
 class UserService{
 
     private $modelUser;
+    private $modelCity;
+    private $modelCountry;
+    private $serviceCity;
+    private $serviceCountry;
+
+
     
 
     public function __construct()
     {
         $this->modelUser = new UserModel();
+        $this->serviceCity= new CityService();
+        $this->serviceCountry= new CountryService();
+        $this->modelCity= new CityModel();
+        $this->modelCountry= new CountryModel();
+        
         
     }
 
@@ -85,8 +96,17 @@ class UserService{
     }
 
     public function insert(UserModel $model){
+
+        $this->modelCity->nameCity=$model->city;
+        $this->modelCity->idCity= $this->serviceCity->insert($this->modelCity->nameCity);
+        $model->city=$this->modelCity->idCity;
+
+        $this->modelCountry->nameCountry=$model->country;
+        $this->modelCountry->idCountry= $this->serviceCountry->insert($this->modelCountry->countryName);
+        $model->country=$this->modelCountry->idCountry;
        
         $model->insertUser($model);
+
         return $model;
 
     }

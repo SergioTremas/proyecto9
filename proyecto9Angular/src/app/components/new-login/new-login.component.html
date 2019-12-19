@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5">
+<!-- <div class="container mt-5 mb-5">
 
 
 
@@ -18,14 +18,14 @@
                     </div>
                     <input name="" class="form-control" placeholder="Full name" type="text">
                 </div>
-                <!-- form-group// -->
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
                     <input name="" class="form-control" placeholder="Email address" type="email">
                 </div>
-                <!-- form-group// -->
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -33,7 +33,7 @@
 
                     <input name="" class="form-control" placeholder="Phone number" type="number">
                 </div>
-                <!-- form-group// -->
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-building"></i> </span>
@@ -45,7 +45,7 @@
                   </select>
                     <input name="" class="form-control" placeholder="Pais de resisdencia" type="text">
                 </div>
-                <!-- form-group end.// -->
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-building"></i> </span>
@@ -57,7 +57,7 @@
                   </select>
                     <input name="" class="form-control" placeholder="Ciudad de resisdencia" type="text">
                 </div>
-                <!-- form-group// -->
+
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -65,22 +65,120 @@
                     </div>
                     <input class="form-control" placeholder="Create password" type="password">
                 </div>
-                <!-- form-group// -->
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
                     <input class="form-control" placeholder="Repeat password" type="password">
                 </div>
-                <!-- form-group// -->
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
                 </div>
-                <!-- form-group// -->
+
                 <p class="text-center">Ya tienes cuenta? <a [routerLink]="['/login']">Log In</a> </p>
             </form>
         </article>
     </div>
-    <!-- card.// -->
 
-</div>
+
+</div> -->
+
+
+<!----------------------------------------------------------------------------------------------------->
+<section class="m-t-40">
+    <div class="second-page-header center">
+        <div class="container">
+            <h2>Registro</h2>
+        </div>
+    </div>
+</section>
+<!-- ===========================================
+=====        form section               ====
+============================================ -->
+<section>
+    <div class="block2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
+                    <div class="block-form box-border wow fadeInLeft animated" data-wow-duration="1s">
+                        <h3><i class="fa fa-user"></i>Información Personal</h3>
+                        <hr>
+                        <form class="form-horizontal" role="form" method="post" action="#">
+                            <div class="form-group">
+                                <label for="inputFirstName" class="col-sm-3 control-label">Nombre:<span class="text-error">*</span></label>
+                                <div class="col-sm-9">
+                                    <input #name type="text" class="form-control" id="inputFirstName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputLastName" class="col-sm-3 control-label">Apellidos:<span class="text-error">*</span></label>
+                                <div class="col-sm-9">
+                                    <input #surname type="text" class="form-control" id="inputLastName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEMail" class="col-sm-3 control-label" #letter>E-Mail:<span class="text-error">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control " id="inputEMail" #email (keyup)=checkEmailForLetter(email.value)><span #aviso>El correo introducido ya existe</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Pais" class="col-sm-3 control-label">Pais</label>
+                                <div class="col-sm-9">
+                                    <input (keyup)="getCountryByLetter(country.value)" #country type="text" class="form-control" id="inputPhone">
+
+                                </div>
+                            </div>
+
+
+
+                            <app-autocomplete></app-autocomplete>
+
+
+
+                            <div class="form-group">
+                                <label for="Pais" class="col-sm-3 control-label">Ciudad</label>
+                                <div class="col-sm-9">
+                                    <input #city type="text" class="form-control" id="inputPhone">
+                                </div>
+                            </div>
+                            <h3><i class="fa fa-lock"></i>Password</h3>
+                            <hr>
+                            <div class="form-group">
+                                <label for="inputPassword1" class="col-sm-3 control-label">Password: <span class="text-error">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="password" (keyup)="repeatPass()" #pass1 class="form-control" id="inputPassword1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword2" class="col-sm-3 control-label">Re-Password: <span class="text-error">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="password" #pass2 class="form-control" (keyup)="repeatPass()" id="inputPassword2"><span #avisoPass>Las contraseñas deben coincider</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <div class="checkbox">
+                                        <label>
+                                          <input #ok type="checkbox"> He leido las y acepto las <a href="#">Condiciones</a>
+                                      </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-sm-offset-3 col-sm-9 ">
+                                    <button #boton (click)="insert()" type="submit" class="btn-default ">Registrarse</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

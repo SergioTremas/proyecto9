@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Login } from '../../models/login';
 import { AuthGuard } from '../../guard/auth.guard';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
+
 
 
 
@@ -17,7 +21,7 @@ export class LoginComponent implements OnInit {
    login: Login;
 
 
-  constructor(private service: LoginService, private auth: AuthGuard) {
+  constructor(private service: LoginService, private auth: AuthGuard, private router: Router, private user: UserService) {
 
     console.log(this.getCookie());
     this.login = new Login();
@@ -35,10 +39,24 @@ export class LoginComponent implements OnInit {
 
    if (form.invalid) {return; }
 
-   this.service.checklogin(JSON.stringify(this.login)).subscribe((data: Login) => {
+   this.service.checklogin(JSON.stringify(this.login)).subscribe((data: String) => {
 
+
+console.log(data);
     this.generarCookie(data);
+    if ( data.length>3) {
 
+      let userM:User;
+    this.user.getByToken().subscribe((data:User)=>{
+  console.log(data);
+    userM=data;
+
+    });
+
+   // this.router.parent.navigate('/about');
+    this.router.navigate(['/navbar']);
+
+    }
 
    });
 

@@ -14,11 +14,15 @@ import { LoginService } from '../../services/login.service';
 })
 export class SingleProductComponent implements OnInit {
 
+
+
   @Input() id;
 
   Product: any;
 
   newValue= true;
+
+  imgUrl= '../../../assets/imgProducts/aneto.jpg';
 
   constructor(private router: ActivatedRoute, private service: ProductsService, private login: LoginService) {
 

@@ -16,6 +16,7 @@ class AssesModel extends DataBase{
     public $asses;
     public $opinion;
     public $assesfirst;
+    public $date;
 
     
 
@@ -34,8 +35,11 @@ class AssesModel extends DataBase{
         }
         
         if (!$res>0) {
-            $sentence ="INSERT INTO `assesment`(`idUser`, `idProduct`, `asses`, `opinion`, `assesfirst`) VALUES
-            ($model->idUser,$model->idProduct, $model->asses, '$model->opinion', '$model->assesfirst')";
+
+            $dateToday= date('Y-m-d');
+
+            $sentence ="INSERT INTO `assesment`(`idUser`, `idProduct`, `asses`, `opinion`, `assesfirst`, `date`) VALUES
+            ($model->idUser,$model->idProduct, $model->asses, '$model->opinion', '$model->assesfirst', '$dateToday')";
 
             parent::insert($sentence);
             $this->getByIdProIdUser($model);
@@ -58,7 +62,7 @@ class AssesModel extends DataBase{
         try {
 	        
 	        $query =parent::prepare("SELECT  assesment.idProduct, product.nameProduct, 
-            assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst FROM `assesment` INNER JOIN user on 
+            assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
             assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct
              where assesment.idProduct= $model->idProduct and assesment.idUser=$model->idUser");
 	        $query->execute();
@@ -76,6 +80,7 @@ class AssesModel extends DataBase{
             $model->asses=$x[4];
             $model->opinion=$x[5];
             $model->assesfirst=$x[6];
+            $model->date=$x[7];
            
 		   }		  
 
@@ -103,7 +108,7 @@ class AssesModel extends DataBase{
 	public function getAllAsses() {
 
         $sentence="SELECT  assesment.idProduct, product.nameProduct, 
-        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst FROM `assesment` INNER JOIN user on 
+        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
         assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct ";
 
         return $this->getBy($sentence);
@@ -113,7 +118,7 @@ class AssesModel extends DataBase{
     public function getByProduct($idProduct){
 
         $sentence="SELECT  assesment.idProduct, product.nameProduct, 
-        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst FROM `assesment` INNER JOIN user on 
+        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
         assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct
          where assesment.idProduct=$idProduct";
 
@@ -123,7 +128,7 @@ class AssesModel extends DataBase{
     public function getByUser($idUser){
 
         $sentence="SELECT  assesment.idProduct, product.nameProduct, 
-        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst FROM `assesment` INNER JOIN user on 
+        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
         assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct
          where assesment.idUser=$idUser";
         return $this->getBy($sentence);
@@ -151,6 +156,7 @@ class AssesModel extends DataBase{
             $model1->asses=$x[4];
             $model1->opinion=$x[5];
             $model1->assesfirst=$x[6];
+            $model1->date=$x[7];
            
             
             $arrayAsses[]=$model1;

@@ -1,7 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {CommonModule} from '@angular/common';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {TabViewModule} from 'primeng/tabview';
+import {CodeHighlighterModule} from 'primeng/codehighlighter';
+
+
 
 //Rutas
 
@@ -33,6 +40,9 @@ import { CookieLoginComponent } from './cookie/cookie-login/cookie-login.compone
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { ValuesUserComponent } from './components/values-user/values-user.component';
+import { ModifyValueComponent } from './components/modify-value/modify-value.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 
 @NgModule({
@@ -43,34 +53,38 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     ProductsComponent,
     AboutComponent,
     UserComponent,
-
     ForLetterComponent,
     SingleProductComponent,
-
     ValuationsComponent,
-
     IntroValuationComponent,
-
     LoginComponent,
-
     NewLoginComponent,
-
     CookieLoginComponent,
-
     EditUserComponent,
-
     HeaderComponent,
-
     FooterComponent,
+    ValuesUserComponent,
+    ModifyValueComponent,
+    AutocompleteComponent,
+
+
 
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     APP_ROUTING,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
+
+    CommonModule,
+
+    AutoCompleteModule,
+    TabViewModule,
+    CodeHighlighterModule
   ],
   providers: [
     ProductsService,

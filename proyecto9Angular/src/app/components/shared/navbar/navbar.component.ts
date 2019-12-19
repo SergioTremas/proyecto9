@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
-import { UserComponent } from '../../user/user.component';
+
 import { UserService } from '../../../services/user.service';
 import { User } from 'src/app/models/user';
-import { isNullOrUndefined } from 'util';
-
-
+import { CategoryService } from '../../../services/category.service';
+import { Category } from 'src/app/models/category';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,32 +16,95 @@ import { isNullOrUndefined } from 'util';
 export class NavbarComponent implements OnInit {
 
   public userModel: User;
+  @ViewChild('userMenu') userMenu: ElementRef;
+  @ViewChild('selectedCategory') select: ElementRef;
 
-  constructor(private router: Router, private login: LoginService, private user: UserService) {
+  Categories: Category[] = [];
+  cat = '*';
+  letter = '*';
 
 
-    if( this.userLogeado()){
+  constructor(private router: Router, private login: LoginService, private user: UserService, private render: Renderer2, private product: ProductsService) {
+
+    if (this.userLogeado()) {
+
       this.user.getByToken().subscribe((data: any) => {
-       this.userModel=data;
+
+       this.userModel = data;
+
        this.user.generarCookieIDUser(this.userModel.idUser);
+       this.render.removeClass(this.userMenu.nativeElement, 'hidden');
 
       });
 
+
+      console.log("dentro navbar ngonit ", this.userModel);
+
     }
 
+
+
+  this.product.getCategories().subscribe( (data:any)=>{
+
+    this.Categories=data;
+
+  });
+
+
+
+  }
+
+  getUser(){
+    this.user.getByToken().subscribe((data: any) => {
+
+      this.userModel = data;
+
+      this.user.generarCookieIDUser(this.userModel.idUser);
+      this.render.removeClass(this.userMenu.nativeElement, 'hidden');
+
+     });
+  }
+
+
+
+  selectCat(cate){
+
+    this.cat= cate;
+    this.router.navigate(['/byletter', this.letter, this.cat]);
+
+
+  }
+
+
+  ngAfterViewChecked(): void {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
+
+
+
+    if ( this.userLogeado()) {
+      // this.user.getByToken().subscribe((data: any) => {
+      //  this.userModel = data;
+      //  this.user.generarCookieIDUser(this.userModel.idUser);
+      //  this.render.removeClass(this.userMenu.nativeElement, 'hidden');
+
+      // });
+
+    }
 
   }
 
   ngOnInit() {
 
-    console.log(this.userModel);
+    this.render.addClass(this.userMenu.nativeElement, 'hidden');
+
+
 
    }
 
    userLogeado(){
 
-
-    if (this.login.checkCookie("tokenLogin")){
+    if (this.login.checkCookie('tokenLogin')){
 
         return true;
     }else {
@@ -49,27 +112,23 @@ export class NavbarComponent implements OnInit {
     }
    }
 
+  getProductsByLetter(letter: string, ) {
 
+    this.letter = letter;
 
-
-
-  getProductsByLetter(letter: string) {
-
-    this.router.navigate(['/byletter', letter]);
+    this.router.navigate(['/byletter', letter, this.cat]);
   }
 
   deleteToken() {
-console.log("logout");
 
-    this.userModel=null;
 
-    const token = this.login.getCookie('tokenLogin');
+    this.userModel= null;
+
+    const token= this.login.getCookie('tokenLogin');
     this.login.deleteCookie(token);
+    this.render.addClass(this.userMenu.nativeElement, 'hidden');
 
   }
-
-
-
 
 
 }

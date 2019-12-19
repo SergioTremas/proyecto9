@@ -23,7 +23,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
         </form>
         <ul class="navbar-nav mr-auto">
-            
+
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['login']">Log In </a>
             </li>
@@ -50,11 +50,11 @@
                 <div class="col-md-6">
                     <div class="pull-right">
                         <!-- header-account menu -->
-                        <div id="account-menu" class="pull-right">
-                            <a href="" class="account-menu-title"><i class="fa fa-user"></i>&nbsp; Cuenta <i class="fa fa-angle-down"></i> </a>
+                        <div #userMenu *ngIf="userModel" id="account-menu" class="pull-right">
+                            <a href="" class="account-menu-title"><i class="fa fa-user"></i>&nbsp; {{userModel.names}} <i class="fa fa-angle-down"></i> </a>
                             <ul class="list-unstyled account-menu-item">
-                                <li><a href=""><i class="fa fa-heart"></i>&nbsp; Wishlist</a></li>
-                                <li><a href=""><i class="fa fa-check"></i>&nbsp; Checkout</a></li>
+                                <li><a [routerLink]="['user']"><i class="fa fa-heart"></i>&nbsp; Modificar datos</a></li>
+                                <li><a [routerLink]="['valuesUser/',userModel.idUser]"><i class="fa fa-check"></i>&nbsp; Valoraciones</a></li>
                             </ul>
                         </div>
                         <!-- /header-account menu -->
@@ -72,23 +72,19 @@
                     <div id="container-fixed">
                         <div class="row">
                             <div class="col-md-3 col-sm-4 col-xs-4">
-                                <a href="index.html" class="header-logo"> <img src="img/logo-big-shop.png" alt=""></a>
+                                <a class="header-logo"> <img src="img/logo-big-shop.png" alt=""></a>
                             </div>
                             <div class="col-md-4 col-sm-8 col-xs-8">
-                                <p class="login"> <i class="fa fa-sign-in"></i><a>Log out</a> <a [routerLink]="['login']">Login</a> <i class="fa fa-pencil-square"></i> <a href="register.html">Registro</a></p>
+                                <p class="login"> <i class="fa fa-sign-in"></i><a *ngIf="userModel" (click)="deleteToken()" [routerLink]="['home']">Log out</a> <a *ngIf="!userModel" [routerLink]="['login']">Login</a> <i class="fa fa-pencil-square"></i> <a [routerLink]="['/newLogin']">Registro</a></p>
                             </div>
                             <div class="col-md-5">
                                 <div class="top-search-form pull-left">
                                     <form action="#" method="post">
-                                        <input type="text" placeholder="Buscar ..." class="form-control">
-                                        <select id="cat" name="cat">
-                                            <option value="">Categorias</option>
-                                            <option value="4">Fashion</option>
-                                            <option value="5">Electronics</option>
-                                            <option value="6">Gifts</option>
-                                            <option value="7">Home &amp; Garden</option>
-                                            <option value="8">Music</option>
-                                            <option value="11">Motors</option>
+                                        <input type="text" placeholder="Buscar ..." class="form-control" (keyup)=getProductsByLetter(letter.value) #letter>
+                                        <select (change)="selectCat(selectedCategory.value)" id="cat" name="cat" #selectedCategory>
+                                            <option value="*">Todas las categorias</option>
+                                            <option  *ngFor="let item of Categories" [value]="item.idCategory" >{{item.nameCategory}}</option>
+
                                         </select>
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
@@ -104,14 +100,14 @@
                     <div class="container">
                         <div class="navbar-header">
                             <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                            <a href="index.html" class="navbar-brand"><i class="fa fa-home"></i></a>
+                            <a [routerLink]="['home']" class="navbar-brand"><i class="fa fa-home"></i></a>
                         </div>
 
                         <div id="navbar-collapse-1" class="navbar-collapse collapse ">
                             <ul class="nav navbar-nav">
-                                <li><a href="shortcode.html">PRODUCTOS</a></li>
-                                <li><a href="shortcode.html">REVIEWS</a></li>
-                                <li><a href="shortcode.html">CONTACTO</a></li>
+                                <li><a [routerLink]="['/byletter', '', '*']">PRODUCTOS</a></li>
+                                <li><a href="">REVIEWS</a></li>
+                                <li><a href="">CONTACTO</a></li>
                             </ul>
 
                         </div>

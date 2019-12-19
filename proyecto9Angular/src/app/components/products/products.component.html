@@ -1,4 +1,4 @@
-<div *ngFor='let pro of productos'>
+<!-- <div *ngFor='let pro of productos'>
 
     <h2>{{ pro.nameProduct }}</h2>
     <p>{{ pro.description }}</p>
@@ -6,7 +6,7 @@
 </div>
 
 <div class="card" style="width: 18rem;" *ngFor="let item of productos">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="../../../assets/imgProducts/aneto.jpg" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">{{item.nameProduct}}</h5>
         <p class="card-text">{{item.description}}</p>
@@ -14,63 +14,103 @@
     </div>
 </div>
 
-<!-- (click)=singleProduct(item.idProduct) -->
+(click)=singleProduct(item.idProduct) -->
+
+<section class="m-t-40">
+    <div class="second-page-header dark">
+        <div class="container">
+            <h2>Productos</h2>
+
+        </div>
+    </div>
+</section>
 
 <section>
-    <div class="block2 color-scheme-2">
+    <div class="block2">
         <div class="container">
-            <div class="block-product-tab">
-                <div class="tab-line"></div>
-                <div class="toolbar-for-light" id="nav-tabs">
-                    <a href="javascript:;" data-role="prev" class="prev"><i class="fa fa-angle-left"></i></a>
-                    <a href="javascript:;" data-role="next" class="next"><i class="fa fa-angle-right"></i></a>
-                </div>
-                <ul class="nav nav-pills">
-                    <li class="active"><a href="#featured" data-toggle="tab" class="disabled">Featured</a>
-                        <div class="header-bottom-line"></div>
-                    </li>
-                </ul>
-                <div class="tab-pane animated fadeIn" id="featured">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="block-products-modes color-scheme-2">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+                                <div class="product-view-mode">
+                                    <a href="products-grid.html" class="active"><i class="fa fa-th-large"></i></a>
+                                    <a href="products-list.html"><i class="fa fa-th-list"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 f-right">
+                                        <select name="products-per-page" class="form-control">
+                                          <option value="10" selected="selected">10</option>
+                                          <option value="20">20</option>
+                                          <option value="30">30</option>
+                                          <option value="100">100</option>
+                                          <option value="all">All</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
-                        <div id="owl-featured" class="owl-carousel">
 
-                            <div class="text-center item">
-                                <article class="product" *ngFor='let pro of productos'>
-                                    <div class="product-new">new</div>
-                                    <figure class="figure-hover-overlay">
-                                        <a href="#" class="figure-href"></a>
-                                        <img class="img-overlay img-responsive" [src]="'/../../assets/imgProducts/'+pro.photo" alt="" title="">
-                                        <img class="img-responsive" [src]="'/../../assets/imgProducts/'+pro.photo" alt="{{ pro.nameProduct }}" title="">
-                                    </figure>
-                                    <div class="product-caption">
-                                        <div class="block-name">
-                                            <a href="#" class="product-name">{{ pro.nameProduct }}</a>
-                                            <div class="product-rating">
-                                                <div class="stars">
-                                                    <span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
-                                                </div>
-                                            </div>
-                                            <p class="product-price"> $120.99</p>
+                        <div class="col-md-6 col-sm-6 col-lg-3">
+                            <article *ngFor="let item of productos" class="product">
 
-                                        </div>
-                                        <div class="product-icons">
-                                            <div class="product-icon">
-                                                <a href="#" class="product-compare" title="Compare"><i class="fa fa-random"></i></a>
-                                            </div>
-                                            <div class="product-icon">
-                                                <a href="#" class="product-card-icon" title="Ver Producto"><i class="fa fa-eye"></i>  Ver Producto </a>
-                                            </div>
-                                            <div class="product-icon">
-                                                <a href="#" class="product-wishlist" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                <figure class="figure-hover-overlay">
+                                    <a [routerLink]="['/singleProduct', item.idProduct]" class="figure-href"></a>
+                                    <img class="img-overlay img-responsive" src="http://placehold.it/800x1000" alt="" title="">
+                                    <img class="img-responsive" src="http://placehold.it/800x1000" alt="" title="">
+                                </figure>
+                                <div class="product-caption">
+                                    <div class="block-name">
+                                        <a href="#" class="product-name">{{item.nameProduct}}</a>
+                                        <div class="product-rating">
+                                            <div class="stars">
+                                                <span class="star"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
                                             </div>
                                         </div>
                                     </div>
-                                </article>
-                            </div>
+                                    <div class="product-icons show">
+                                        <div class="product-icon">
+                                            <a href="#" class="product-compare" title="Compare"><i class="fa fa-random"></i></a>
+                                        </div>
+                                        <div class="product-icon">
+                                            <a href="#" class="product-card-icon" title="View"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                        <div class="product-icon">
+                                            <a href="#" class="product-wishlist" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
 
-
-
+                            </article>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+                    <div class="hot-service">
+                        <i class="fa fa-truck"></i>
+                        <div class="text-area">
+                            <h4>FREE SHIPPING &amp; RETURN</h4>
+                        </div>
+
+                    </div>
+                    <div class="hot-service">
+                        <i class="fa fa-money"></i>
+                        <div class="text-area">
+                            <h4>MONEY BACK GUARANTE</h4>
+                        </div>
+
+                    </div>
+                    <div class="hot-service">
+                        <i class="fa fa-support"></i>
+                        <div class="text-area">
+                            <h4>ONLINE SUPPORT 24/7</h4>
+                        </div>
+
                     </div>
                 </div>
             </div>

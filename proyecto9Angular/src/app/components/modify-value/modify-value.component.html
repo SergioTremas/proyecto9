@@ -1,0 +1,50 @@
+<section class="m-t-40">
+    <div class="second-page-header dark">
+        <div class="container">
+            <h2>Modificar reseña</h2>
+
+        </div>
+    </div>
+</section>
+<div class="container">
+
+    <section>
+        <article class="product list">
+            <div class="row">
+                <div class="col-xs-19 col-sm-4 col-md-4 col-lg-3 text-center">
+                    <figure class="figure-hover-overlay">
+                        <a href="#" class="figure-href"></a>
+                        <img class="img-overlay img-responsive" src="http://placehold.it/800x1000" alt="" title="">
+                        <img class="img-responsive" src="http://placehold.it/800x1000" alt="" title="">
+                    </figure>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 text-center">
+                    <div class="product-caption">
+                        <div class="block-name">
+                            <a href="#" class="product-name">{{valuation.nameProduct}}</a>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <span (click)="insertStars(5)" #star5 [class.active]="valuation.assesfirst>4" class="star "></span><span (click)="insertStars(4)" #star3 [class.active]="valuation.assesfirst>3" class="star  "></span><span (click)="insertStars(3)"
+                                        #star2 [class.active]="valuation.assesfirst>2" class="star  "></span><span (click)="insertStars(2)" #star1 [class.active]="valuation.assesfirst>1" class="star  "></span>
+                                    <span [class.active]="valuation.assesfirst>0" class="star" (click)="insertStars(1,1)"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea [class.read-only]="justDone" value="1" class="form-control" name="opinion" (keyup)="imprimir()" [(ngModel)]="valuation.opinion"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form>
+
+                        <input (click)="modify()" type="submit" class="btn-default m-3" value="Modificar Valoración">
+                        <input #delte type="submit" class="btn-default m-3" value="Borrar Valoración">
+                    </form>
+
+                </div>
+            </div>
+
+        </article>
+    </section>
+</div>

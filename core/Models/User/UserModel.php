@@ -29,10 +29,10 @@ class UserModel extends DataBase {
 
 
 	public function insertUser(UserModel $modelUser){
+		
+		$dateToday= date('Y-m-d');
 
-
-		$sentence ="INSERT INTO `user`( `name`, `surname`, `email`, `idCountry`, `idCity`, `numberAsses`, `dataAdmission`, `idRol`, `idLogin`, `idLevel`) VALUES ('$modelUser->names','$modelUser->surname','$modelUser->email',$modelUser->country,
-		$modelUser->city,$modelUser->numberAsses,'$modelUser->dataAdd',$modelUser->rol,$modelUser->login,$modelUser->level)";
+		$sentence ="INSERT INTO `user`( `name`, `surname`, `email`, `idCountry`, `idCity`, `numberAsses`, `dataAdmission`, `idRol`, `idLogin`, `idLevel`) VALUES ('$modelUser->names','$modelUser->surname','$modelUser->email','$modelUser->country','$modelUser->city','$modelUser->numberAsses','$dateToday','$modelUser->rol','$modelUser->login','$modelUser->level')";
 
 		$id1= parent::insert($sentence);
 		$id1=intval($id1);
@@ -76,7 +76,26 @@ class UserModel extends DataBase {
 	 }
 	
 
-	
+	 public function getSumLevels($id1){
+
+        $sentence="	 SELECT sum(leveluser.ValueAsses) FROM user INNER JOIN assesment on user.idUser=assesment.idUser INNER JOIN leveluser on user.idLevel=leveluser.idLevel where assesment.idProduct=$id1";
+
+        try {
+	        
+	        $query =parent::prepare($sentence);
+	        $query->execute();
+
+		   $res= $query->fetchAll();		 
+
+		   return $res[0][0];
+
+	    } catch (\PDOException $e) {
+	        print "Error!: " . $e->getMessage();
+	    }
+
+
+    }
+
 	
 
 	public function getUserByField(string $column, string $field  ){
