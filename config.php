@@ -30,13 +30,12 @@ define('LEVEL_MODEL',PATH_MODELS. '/Level/LevelModel.php');
 define('CATEGORY_MODEL',PATH_MODELS. '/Category/CatgoryModel.php');
 define('CATEGORYFHATER_MODEL',PATH_MODELS. '/CategoryFatherModel/CategoryFatherModel.php');
 define('PRODUCT_MODEL', PATH_MODELS. '/Product/ProductModel.php' );
+define('PRODUCT_MODEL_TRUE', PATH_MODELS. '/Product/ProductModelTrue.php');
 define('CITY_MODEL', PATH_MODELS. '/City/CityModel.php' );
-define('COUNTRY_MODEL', PATH_MODELS. '/Country/CountryModel.php' );
+define('COUNTRY_MODEL', PATH_MODELS. '/Country/CountryModel.php');
 define('ROL_MODEL', PATH_MODELS. '/Rol/RolModel.php' );
 define('ASSES_MODEL', PATH_MODELS. '/Asses/AssesModel.php' );
 define('COUNTRY_MODEL_TRUE', PATH_MODELS. '/Country/CountryModelTrue.php');
-
-
 
 
 

@@ -93,7 +93,7 @@ class CategoryModel extends DataBase{
 
 	    try {
 	        
-	        $query =parent::prepare("SELECT * FROM Category");
+	        $query =parent::prepare("SELECT * FROM category");
 	        $query->execute();
 
 		   $res= $query->fetchAll();

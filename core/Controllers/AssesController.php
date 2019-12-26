@@ -9,7 +9,14 @@ require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
 require(ASSES_MODEL);
 require(ASSES_SERVICES);
 require(USER_MODEL);
+require(PRODUCT_MODEL_TRUE);
+
 require(USER_SERVICES);
+require(CITY_MODEL);
+require(CITY_SERVICES);
+require(COUNTRY_MODEL);
+require(COUNTRY_SERVICES);
+
 
 $json = file_get_contents('php://input');
 $objeto = json_decode($json);
@@ -26,14 +33,18 @@ $reply= new AssesModel();
 
 $service = new AssesService();
 
-
- 
            $reply->idProduct=$objeto->idProduct;
            $reply->opinion=$objeto->opinion;
            $reply->idUser= $objeto->idUser;
            $reply->asses=$objeto->asses;
 
 switch ($i) {
+
+    case "countAsses":
+
+        $reply= $service->countAsses($reply->idProduct);
+        
+         break;
 
     case "insert":
 

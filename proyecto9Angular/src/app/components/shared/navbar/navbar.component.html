@@ -81,9 +81,9 @@
                                 <div class="top-search-form pull-left">
                                     <form action="#" method="post">
                                         <input type="text" placeholder="Buscar ..." class="form-control" (keyup)=getProductsByLetter(letter.value) #letter>
-                                        <select (change)="selectCat(selectedCategory.value)" id="cat" name="cat" #selectedCategory>
+                                        <select (click)="selectCat(selectedCategory.value)" id="cat" name="cat" #selectedCategory>
                                             <option value="*">Todas las categorias</option>
-                                            <option  *ngFor="let item of Categories" [value]="item.idCategory" >{{item.nameCategory}}</option>
+                                            <option   *ngFor="let item of Categories" [value]="item.idCategory" >{{item.nameCategory}}</option>
 
                                         </select>
                                         <button type="submit"><i class="fa fa-search"></i></button>
@@ -106,8 +106,32 @@
                         <div id="navbar-collapse-1" class="navbar-collapse collapse ">
                             <ul class="nav navbar-nav">
                                 <li><a [routerLink]="['/byletter', '', '*']">PRODUCTOS</a></li>
-                                <li><a href="">REVIEWS</a></li>
-                                <li><a href="">CONTACTO</a></li>
+
+                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">USUARIOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                    <ul class="dropdown-menu list-unstyled fadeInUp animated">
+                                        <li class="dropdown-submenu">
+                                            <a [routerLink]="['/listUsers']"> Listado Usuarios </a>
+
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">RESEÑAS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                    <ul class="dropdown-menu list-unstyled fadeInUp animated">
+                                        <li class="dropdown-submenu">
+                                            <a [routerLink]="['/listRev']"> Listado Reseñas </a>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">PRODUCTOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                    <ul class="dropdown-menu list-unstyled fadeInUp animated">
+                                        <li class="dropdown-submenu">
+                                            <a [routerLink]="['/listProducts']"> Listado Productos </a>
+                                            <a [routerLink]="['/insertProduct']"> Añadir Producto </a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
 
                         </div>

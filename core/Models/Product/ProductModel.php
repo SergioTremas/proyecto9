@@ -6,11 +6,14 @@ class ProductModel extends DataBase{
 
 
     private $modelUser;
+    
+
 
     public function __construct() {
         parent::__construct();
         
         $this->modelUser = new UserModel();
+       
 	}
 
 
@@ -26,7 +29,7 @@ class ProductModel extends DataBase{
 
 	public function insertProduct(ProductModel $model ){
 
-        $sentence="INSERT INTO `product`(`nameProduct`, `desciption`, `photo`) VALUES ('$model->nameProduct','$model->description','$model->photo')";
+        $sentence="INSERT INTO `product`(`nameproduct`, `desciption`, `photo`) VALUES ('$model->nameProduct','$model->description','$model->photo')";
 
         $id1= parent::insert($sentence);
         
@@ -35,7 +38,7 @@ class ProductModel extends DataBase{
         $this->description=$model->description;
         $this->photo=$model->photo;	
 
-        $sentence="INSERT INTO `categoryproduct`(`idCategory`, `idProduct`) VALUES ('$this->idCategory','$this->idProduct')";
+        $sentence="INSERT INTO `categoryproduct`(`idcategory`, `idproduct`) VALUES ('$this->idCategory','$this->idProduct')";
 
         parent::insert($sentence);  
 
@@ -45,9 +48,9 @@ class ProductModel extends DataBase{
 
 	public function updateProduct(ProductModel $model){
 
-		$sentence ="UPDATE `product` SET `nameProduct`='$model->nameProduct',`desciption`='$model->description',`photo`='$model->photo' where idProduct= '$model->idProduct'";
-        $sentence1= "DELETE FROM `categoryproduct` WHERE  `idProduct`='$model->idProduct'";
-        $sentence2= "INSERT INTO `categoryproduct`(`idCategory`, `idProduct`) VALUES ('$model->idCategory','$model->idProduct')";
+		$sentence ="UPDATE `product` SET `nameproduct`='$model->nameProduct',`desciption`='$model->description',`photo`='$model->photo' where idproduct= '$model->idProduct'";
+        $sentence1= "DELETE FROM `categoryproduct` WHERE  `idproduct`='$model->idProduct'";
+        $sentence2= "INSERT INTO `categoryproduct`(`idcategory`, `idproduct`) VALUES ('$model->idCategory','$model->idProduct')";
 
         parent::insert($sentence1);
         parent::insert($sentence2);        
@@ -57,9 +60,17 @@ class ProductModel extends DataBase{
     public function getAVG($id1){
         $allAsses= $this->getSumAsses($id1);
         $allLevels= $this->modelUser->getSumLevels($id1);
-  
-        $AVG= $allAsses/$allLevels;
-        return $AVG;
+
+        if($allAsses==0){
+            $allAsses=1;
+        }
+        if($allLevels==0){
+            $allLevels=1;
+        }
+        
+            $AVG= $allAsses/$allLevels;
+            return $AVG;
+       
   
   
       }
@@ -70,11 +81,11 @@ class ProductModel extends DataBase{
 
         try {
 	        
-	        $query = parent::prepare("SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, 
-            product.photo , categoryproduct.idCategory, category.nameCategory, AVG(assesment.asses) FROM `categoryproduct` 
-            inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on 
-            categoryproduct.idProduct=product.idProduct INNER JOIN assesment ON 
-            categoryproduct.idProduct=assesment.idProduct where product.idProduct= $id1");
+	        $query = parent::prepare("SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, 
+            product.photo , categoryproduct.idcategory, category.namecategory, AVG(assesment.asses) FROM `categoryproduct` 
+            inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on 
+            categoryproduct.idproduct=product.idproduct INNER JOIN assesment ON 
+            categoryproduct.idproduct=assesment.idProduct where product.idproduct= $id1");
 	        $query->execute();
 
 		   $res= $query->fetchAll();	  
@@ -101,7 +112,7 @@ class ProductModel extends DataBase{
 
     public function getSumAsses($id1){
 
-        $sentence="select sum(asses) from assesment WHERE `idProduct`=$id1";
+        $sentence="select sum(asses) from assesment WHERE `idproduct`=$id1";
 
         try {
 	        
@@ -124,8 +135,10 @@ class ProductModel extends DataBase{
 
          $sentence="DELETE FROM `product` WHERE idproduct=$id1";
          $sentence1="DELETE FROM `categoryproduct` WHERE idproduct=$id1";
+         $sentence2="DELETE FROM `assesment` WHERE `idProduct`=$id1";
 
          parent::insert($sentence1);
+         parent::insert($sentence2);
 
 		 parent::insert($sentence);
 	 }
@@ -133,11 +146,11 @@ class ProductModel extends DataBase{
      
      public function getProductsByCCAA( $idCCAA) {
 
-        $sentence="SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, 
-        product.photo , categoryproduct.idCategory, category.nameCategory FROM `categoryproduct` 
-        inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on 
-        categoryproduct.idProduct=product.idProduct INNER JOIN categoryfather on
-         category.idCategoryFhater=categoryfather.idCategoryFhater where category.idCategoryFhater=$idCCAA";
+        $sentence="SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, 
+        product.photo , categoryproduct.idcategory, category.namecategory FROM `categoryproduct` 
+        inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on 
+        categoryproduct.idproduct=product.idproduct INNER JOIN categoryfather on
+         category.idcategoryfhater=categoryfather.idCategoryfhater where category.idcategoryfhater=$idCCAA";
 
          return $this->getBy($sentence);
 	}
@@ -145,10 +158,10 @@ class ProductModel extends DataBase{
 	
      public function getProductsByCategory( $idCategory) {
 
-        $sentence="SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, 
-            product.photo , categoryproduct.idCategory, category.nameCategory FROM `categoryproduct` 
-            inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on 
-            categoryproduct.idProduct=product.idProduct where categoryproduct.idCategory=$idCategory";
+        $sentence="SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, 
+            product.photo , categoryproduct.idcategory, category.namecategory FROM `categoryproduct` 
+            inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on 
+            categoryproduct.idproduct=product.idproduct where categoryproduct.idcategory=$idCategory";
 
             return $this->getBy($sentence);
 
@@ -157,10 +170,10 @@ class ProductModel extends DataBase{
 
     public function getAllProduct() {
 
-        $sentence="SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, 
-        product.photo , categoryproduct.idCategory, category.nameCategory FROM `categoryproduct` 
-        inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on 
-        categoryproduct.idProduct=product.idProduct ";
+        $sentence="SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, 
+        product.photo , categoryproduct.idcategory, category.namecategory FROM `categoryproduct` 
+        inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on 
+        categoryproduct.idproduct=product.idproduct ";
  
         return $this->getBy($sentence);
             
@@ -168,7 +181,7 @@ class ProductModel extends DataBase{
 
      public function getAllbyLetter(string $letter) {
 
-        $sentence="SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, product.photo , categoryproduct.idCategory, category.nameCategory FROM `categoryproduct` inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on categoryproduct.idProduct=product.idProduct where product.nameProduct like '$letter%'";
+        $sentence="SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, product.photo , categoryproduct.idcategory, category.namecategory FROM `categoryproduct` inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on categoryproduct.idproduct=product.idproduct where product.nameproduct like '$letter%'";
  
         return $this->getBy($sentence);
             
@@ -176,7 +189,7 @@ class ProductModel extends DataBase{
 
      public function getByLetterCategory(string $letter, string $idCat){
 
-        $sentence="SELECT categoryproduct.idProduct , product.nameProduct, product.desciption, product.photo , categoryproduct.idCategory, category.nameCategory FROM `categoryproduct` inner JOIN category on categoryproduct.idCategory= category.idCategory INNER JOIN product on categoryproduct.idProduct=product.idProduct where product.nameProduct like '$letter%' AND categoryproduct.idCategory='$idCat'";
+        $sentence="SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, product.photo , categoryproduct.idcategory, category.namecategory FROM `categoryproduct` inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on categoryproduct.idproduct=product.idproduct where product.nameproduct like '$letter%' AND categoryproduct.idcategory='$idCat'";
  
         return $this->getBy($sentence);
 
@@ -195,7 +208,7 @@ class ProductModel extends DataBase{
 		   
 		   foreach($res as $x){
 
-            $model = new ProductModel(); 
+            $model = new ProductModelTrue(); 
           
             $model->idProduct= $x[0];
             $model->nameProduct=$x[1];

@@ -17,7 +17,6 @@ class UserModel extends DataBase {
 	public $email;
 	public $idCountry;
 	public $country;
-	public $idCity;
     public $city;
     public $numberAsses;
 	public $dataAdd;	
@@ -32,7 +31,7 @@ class UserModel extends DataBase {
 		
 		$dateToday= date('Y-m-d');
 
-		$sentence ="INSERT INTO `user`( `name`, `surname`, `email`, `idCountry`, `idCity`, `numberAsses`, `dataAdmission`, `idRol`, `idLogin`, `idLevel`) VALUES ('$modelUser->names','$modelUser->surname','$modelUser->email','$modelUser->country','$modelUser->city','$modelUser->numberAsses','$dateToday','$modelUser->rol','$modelUser->login','$modelUser->level')";
+		$sentence ="INSERT INTO `user`( `name`, `surname`, `email`, `idCountry`, `city`, `numberAsses`, `dataAdmission`, `idRol`, `idLogin`, `idLevel`) VALUES ('$modelUser->names','$modelUser->surname','$modelUser->email','$modelUser->country','$modelUser->city','$modelUser->numberAsses','$dateToday','$modelUser->rol','$modelUser->login','$modelUser->level')";
 
 		$id1= parent::insert($sentence);
 		$id1=intval($id1);
@@ -43,7 +42,6 @@ class UserModel extends DataBase {
 		$this->email=$modelUser->email;
 		$this->idCountry=$modelUser->idCountry;
 		$this->country=$modelUser->country;
-		$this->idCity=$modelUser->idCity;
 		$this->city=$modelUser->city;
 		$this->numberAsses=$modelUser->numberAsses;
 		$this->dataAdd=$modelUser->dataAdd;	
@@ -57,9 +55,9 @@ class UserModel extends DataBase {
 
 		$sentence=
 		"UPDATE `user` SET `name`= '$model->names',`surname`='$model->surname',
-		`email`='$model->email',`idCountry`=$model->idCountry,`idCity`=$model->idCity,
-		`numberAsses`=$model->numberAsses,`dataAdmission`='$model->dataAdd',`idRol`=$model->rol,
-		`idLogin`=$model->login,`idLevel`=$model->level WHERE idUser=$model->idUser";
+		`email`='$model->email',`idCountry`='$model->idCountry',`city`='$model->city',
+		`numberAsses`='$model->numberAsses',`dataAdmission`='$model->dataAdd',`idRol`='$model->rol',
+		`idLogin`='$model->login',`idLevel`='$model->level' WHERE idUser='$model->idUser'";
 
 		parent::insert($sentence);
 
@@ -78,7 +76,7 @@ class UserModel extends DataBase {
 
 	 public function getSumLevels($id1){
 
-        $sentence="	 SELECT sum(leveluser.ValueAsses) FROM user INNER JOIN assesment on user.idUser=assesment.idUser INNER JOIN leveluser on user.idLevel=leveluser.idLevel where assesment.idProduct=$id1";
+        $sentence="	 SELECT sum(leveluser.valueAsses) FROM user INNER JOIN assesment on user.idUser=assesment.idUser INNER JOIN leveluser on user.idLevel=leveluser.idLevel where assesment.idProduct=$id1";
 
         try {
 	        
@@ -102,7 +100,7 @@ class UserModel extends DataBase {
 
 		try {
 		 
-		 $query =parent::prepare("SELECT * FROM user INNER join country on user.idCountry= country.idCountry INNER JOIN city on user.idCity = city.idCity INNER JOIN login on user.idLogin=login.idLogin where $column='$field'");
+		 $query =parent::prepare("SELECT * FROM user INNER join country on user.idCountry= country.idCountry  INNER JOIN login on user.idLogin=login.idLogin where $column='$field'");
 		 $query->execute();
 
 		$res= $query->fetchAll();
@@ -119,9 +117,8 @@ class UserModel extends DataBase {
 			 $model->surname=$x[2];
 			 $model->email=$x[3];
 			 $model->idCountry=$x[4];
-			 $model->idCity=$x[5];
+			 $model->city=$x[5];
 			 $model->country=$x[12];
-			 $model->city=$x[14];
 			 $model->numberAsses=$x[6];
 			 $model->dataAdd=$x[7];			
 			 $model->rol=$x[8];
@@ -142,9 +139,8 @@ class UserModel extends DataBase {
 			$this->surname=$model->surname=$x[2];
 			$this->email=$model->email=$x[3];
 			$this->idCountry=$model->idCountry=$x[4];
-			$this->idCity=$model->idCity=$x[5];
+			$this->city=$model->idCity=$x[5];
 			$this->country=$model->country=$x[12];
-			$this->city=$model->city=$x[14];
 			$this->numberAsses=$model->numberAsses=$x[6];
 			$this->dataAdd=$model->dataAdd=$x[7];			
 			$this->rol=$model->rol=$x[8];
@@ -162,11 +158,30 @@ class UserModel extends DataBase {
 
  }
 
+ public function delteToken($token){
+	$sentence="Update login Set token = null where token='$token'";
+
+	try {
+	        
+		$query =parent::prepare($sentence);
+		$query->execute();
+
+	   $res= $query->fetchAll();		 
+
+	   return $res[0][0];
+
+	} catch (\PDOException $e) {
+		print "Error!: " . $e->getMessage();
+	}
+
+
+ }
+
 	public function getAllUsers() {
 
 	    try {
 	        
-	        $query =parent::prepare("SELECT * FROM user INNER join country on user.idCountry= country.idCountry INNER JOIN city on user.idCity = city.idCity");
+	        $query =parent::prepare("SELECT * FROM user INNER join country on user.idCountry= country.idCountry ");
 	        $query->execute();
 
 		   $res= $query->fetchAll();
@@ -181,7 +196,7 @@ class UserModel extends DataBase {
 				$model->surname=$x[2];
 				$model->email=$x[3];
 				$model->country=$x[12];
-				$model->city=$x[14];
+				$model->city=$x[5];
 				$model->numberAsses=$x[6];
 				$model->dataAdd=$x[7];
 				$model->rol=$x[8];

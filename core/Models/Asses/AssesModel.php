@@ -17,6 +17,7 @@ class AssesModel extends DataBase{
     public $opinion;
     public $assesfirst;
     public $date;
+    public $photo;
 
     
 
@@ -46,7 +47,32 @@ class AssesModel extends DataBase{
                                             
         }	    
 
-	}
+    }
+    
+    public function assesCount($idProduct){
+        $sentence="SELECT COUNT(opinion) from assesment where idProduct='$idProduct'";
+
+        try {
+	        
+	        $query =parent::prepare($sentence);
+	        $query->execute();
+
+           $res= $query->fetchAll();
+          		   
+		   foreach($res as $x){
+                
+            $count=$x[0]; 
+           
+		   }		  
+
+	    } catch (\PDOException $e) {
+	        print "Error!: " . $e->getMessage();
+        }
+        
+        return $count;
+
+        
+    }
 
 	public function updateAsses(AssesModel $model){
 
@@ -62,7 +88,7 @@ class AssesModel extends DataBase{
         try {
 	        
 	        $query =parent::prepare("SELECT  assesment.idProduct, product.nameProduct, 
-            assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
+            assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date, product.photo FROM `assesment` INNER JOIN user on 
             assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct
              where assesment.idProduct= $model->idProduct and assesment.idUser=$model->idUser");
 	        $query->execute();
@@ -81,6 +107,8 @@ class AssesModel extends DataBase{
             $model->opinion=$x[5];
             $model->assesfirst=$x[6];
             $model->date=$x[7];
+            $model->photo=$x[8];
+            
            
 		   }		  
 
@@ -108,8 +136,8 @@ class AssesModel extends DataBase{
 	public function getAllAsses() {
 
         $sentence="SELECT  assesment.idProduct, product.nameProduct, 
-        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
-        assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct ";
+        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date, product.photo  FROM `assesment` INNER JOIN user on 
+        assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct ORDER BY `date` DESC";
 
         return $this->getBy($sentence);
 
@@ -118,7 +146,7 @@ class AssesModel extends DataBase{
     public function getByProduct($idProduct){
 
         $sentence="SELECT  assesment.idProduct, product.nameProduct, 
-        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
+        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date, product.photo  FROM `assesment` INNER JOIN user on 
         assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct
          where assesment.idProduct=$idProduct";
 
@@ -128,7 +156,7 @@ class AssesModel extends DataBase{
     public function getByUser($idUser){
 
         $sentence="SELECT  assesment.idProduct, product.nameProduct, 
-        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date FROM `assesment` INNER JOIN user on 
+        assesment.idUser, user.name, assesment.asses, assesment.opinion, assesment.assesfirst, assesment.date, product.photo FROM `assesment` INNER JOIN user on 
         assesment.idUser=user.idUser INNER JOIN product ON assesment.idProduct=product.idProduct
          where assesment.idUser=$idUser";
         return $this->getBy($sentence);
@@ -157,6 +185,8 @@ class AssesModel extends DataBase{
             $model1->opinion=$x[5];
             $model1->assesfirst=$x[6];
             $model1->date=$x[7];
+            $model1->photo=$x[8];
+
            
             
             $arrayAsses[]=$model1;

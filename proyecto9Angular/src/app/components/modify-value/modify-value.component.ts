@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Valuation1 } from 'src/app/models/valuation1';
 import { ValuationsService } from '../../services/valuations.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-modify-value',
@@ -13,11 +14,13 @@ export class ModifyValueComponent implements OnInit {
   idUser;
   idProduct;
   valuation: Valuation1;
-  num= 0;
+  num = 0;
 
 
 
-  constructor(private router: ActivatedRoute, private service : ValuationsService, private route: Router) {
+
+
+  constructor(private router: ActivatedRoute, private service : ValuationsService, private route: Router,private productService:ProductsService) {
 
     this.router.params.subscribe((params:any)=>{
 
@@ -26,26 +29,28 @@ export class ModifyValueComponent implements OnInit {
 
     });
 
+
+
    }
 
   ngOnInit() {
 
-this.service.getByUserProduct(this.idUser,this.idProduct).subscribe((data:Valuation1)=>{
+this.service.getByUserProduct(this.idUser, this.idProduct).subscribe((data: Valuation1)=>{
 
-    this.valuation=data;
+    this.valuation = data;
 
 });
+
+
   }
 
 
-  insertStars(value: any, num: string) {
+  insertStars(value: any, num) {
 
 
     if(num){
 
-    let num1 = parseInt(num);
-
-    this.num = this.num + num1;
+    this.num = this.num + num;
   }
 
     if(this.num<2){
@@ -54,7 +59,7 @@ this.service.getByUserProduct(this.idUser,this.idProduct).subscribe((data:Valuat
     this.valuation.assesfirst = value;
 
   }else{
-    this.valuation.assesfirst='0';
+    this.valuation.assesfirst=0;
     this.num=0;
 
   }
@@ -64,12 +69,12 @@ this.service.getByUserProduct(this.idUser,this.idProduct).subscribe((data:Valuat
 
   modify(){
 
-    this.valuation.action = 'insert';
-    this.valuation.asses = this.valuation.assesfirst;
+    this.valuation.action = 'update';
+    this.valuation.asses = String(this.valuation.assesfirst);
+    this.service.upDateValue(JSON.stringify(this.valuation)).subscribe(data=>{
+      this.route.navigate(["/valuesUser", this.idUser]);
 
-    this.service.deleteByUser(this.idUser, this.idProduct).subscribe();
-    this.service.introValuation(JSON.stringify(this.valuation)).subscribe();
-    this.route.navigate(["/valuesUser", this.idUser]);
+    });
   }
 
 }

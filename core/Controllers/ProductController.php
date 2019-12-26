@@ -8,35 +8,35 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
 require(PRODUCT_SERVICES);
 require(PRODUCT_MODEL);
+require(PRODUCT_MODEL_TRUE);
 require(USER_MODEL);
 
 
 
-    //$json = file_get_contents('php://input');
+    $json = file_get_contents('php://input');
  
-   // $producto = json_decode($json);
+   $producto = json_decode($json);
 
 
-    $idProduct=isset($_GET['id'])? $_GET['id'] : $_POST[('id')];
-    $nameProduct=isset($_GET['name'])? $_GET['name'] : $_POST[('name')];
-    $description=isset($_GET['description'])? $_GET['description'] : $_POST[('description')];
-    $photo=isset($_GET['photo'])? $_GET['photo'] : $_POST[('photo')];
-    $category=isset($_GET['category'])? $_GET['category'] : $_POST[('category')];
-    $CCAA=isset($_GET['CCAA'])? $_GET['CCAA'] : $_POST[('CCAA')];
+    
 
-    $i =isset($_GET['action'])? $_GET['action'] : $_POST[('action')];
-
+    $i =$producto->action;
 
 
 $reply= new ProductModel();
 
 $service = new ProductService();
 
-$reply->nameProduct=$nameProduct;
-$reply->idProduct=$idProduct;
-$reply->description=$description;
-$reply->photo=$photo;
-$reply->idCategory=$category;
+if(!isset($producto->nameProduct)){$producto->nameProduct = "null" ;}
+$reply->nameProduct=$producto->nameProduct;
+if(!isset($producto->idProduct)){$producto->idProduct = "null" ;}
+$reply->idProduct=$producto->idProduct;
+if(!isset($producto->description)){$producto->description = "null" ;}
+$reply->description=$producto->description;
+if(!isset($producto->photo)){$producto->photo = "null" ;}
+$reply->photo=$producto->photo;
+if(!isset($producto->idCategory)){$producto->idCategory = "null" ;}
+$reply->idCategory=$producto->idCategory;
 
 
 
@@ -46,7 +46,7 @@ switch ($i) {
 
     case "getById":
 
-        $reply = $service->getByID($idProduct);
+        $reply = $service->getByID($reply->idProduct);
        
         break;
 
@@ -64,7 +64,7 @@ switch ($i) {
 
     case "letter":
 
-        $reply=$service->getAllbyLetter($nameProduct);
+        $reply=$service->getAllbyLetter($reply->nameProduct);
            
         break;
 
@@ -77,7 +77,7 @@ switch ($i) {
 
     case "delete":
 
-        $service->deleteProduct($idProduct);
+        $service->deleteProduct($reply->idProduct);
        
         break;
 
@@ -89,7 +89,7 @@ switch ($i) {
 
     case "getAVG":
 
-        $reply= $service->getAVG($idProduct);
+        $reply= $service->getAVG($reply->idProduct);
      
         break;
 
@@ -101,7 +101,7 @@ switch ($i) {
 
     case "getByCategory":
 
-        $reply=$service->getByCategory($category);
+        $reply=$service->getByCategory($reply->idCategory);
        
         break;
     case "getCategory":

@@ -42,59 +42,27 @@
 
                                 <figure class="figure-hover-overlay">
                                     <a [routerLink]="['/singleProduct', item.idProduct]" class="figure-href"></a>
-                                    <img class="img-overlay img-responsive" [src]="'../../../assets/imgProducts/'+item.photo" alt="" title="">
-                                    <img class="img-responsive" [src]="'../../../assets/imgProducts/'+item.photo" alt="{{item.photo}}" title="">
+                                    <img class="img-overlay img-responsive" [src]="'assets/imgProducts/'+item.photo" alt="" title="">
+                                    <img class="img-responsive" [src]="'assets/imgProducts/'+item.photo" alt="{{item.photo}}" title="">
                                 </figure>
                                 <div class="product-caption">
                                     <div class="block-name">
                                         <a href="#" class="product-name">{{item.nameProduct}}</a>
                                         <div class="product-rating">
                                             <div class="stars">
-                                                <span class="star"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
+                                                <span [class.active]="item.valueAVG>4" class="star "></span><span [class.active]="item.valueAVG>3" class="star  "></span><span [class.active]="item.valueAVG>2" class="star  "></span><span [class.active]="item.valueAVG>1"
+                                                    class="star  "></span><span [class.active]="item.valueAVG>0" class="star  "></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-icons show">
-                                        <div class="product-icon">
-                                            <a href="#" class="product-compare" title="Compare"><i class="fa fa-random"></i></a>
-                                        </div>
-                                        <div class="product-icon">
-                                            <a href="#" class="product-card-icon" title="View"><i class="fa fa-eye"></i></a>
-                                        </div>
-                                        <div class="product-icon">
-                                            <a href="#" class="product-wishlist" title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                        </div>
-                                    </div>
+
                                 </div>
 
                             </article>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
 
-                    <div class="hot-service">
-                        <i class="fa fa-truck"></i>
-                        <div class="text-area">
-                            <h4>FREE SHIPPING &amp; RETURN</h4>
-                        </div>
-
-                    </div>
-                    <div class="hot-service">
-                        <i class="fa fa-money"></i>
-                        <div class="text-area">
-                            <h4>MONEY BACK GUARANTE</h4>
-                        </div>
-
-                    </div>
-                    <div class="hot-service">
-                        <i class="fa fa-support"></i>
-                        <div class="text-area">
-                            <h4>ONLINE SUPPORT 24/7</h4>
-                        </div>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>

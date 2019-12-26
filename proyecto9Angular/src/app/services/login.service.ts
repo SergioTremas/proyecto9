@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/login';
 import { CookieService } from 'ngx-cookie-service';
 import { Country } from '../models/country';
+import { Url } from '../models/urlfather';
 
 
 
@@ -11,11 +12,17 @@ import { Country } from '../models/country';
 })
 export class LoginService {
 
-   public url = 'http://localhost/proyecto9/core/Controllers/LoginController.php';
-   public urlCountry = 'http://localhost/proyecto9/core/Controllers/CountryController.php';
+   url: string;
+   urlCountry: string;
+   urlC: Url;
 
 
-  constructor(private http: HttpClient, private cookie: CookieService) { }
+  constructor(private http: HttpClient, private cookie: CookieService) {
+    this.urlC= new Url();
+    this.url=this.urlC.urlCommon + 'LoginController.php';
+    this.urlCountry=this.urlC.urlCommon +'CountryController.php';
+
+  }
 
 
   checklogin(login: string) {
@@ -28,19 +35,19 @@ export class LoginService {
 
     let login = new Login();
 
-    login.action="checkEmail";
-    login.email=letter;
-    login.idLogin="";
-    login.pass="";
-    login.token="";
+    login.action = 'checkEmail';
+    login.email = letter;
+    login.idLogin = '';
+    login.pass = '';
+    login.token = '';
 
 
     return this.http.post(this.url, JSON.stringify(login));
   }
 
-  getCountryByLetter(letter:string){
+  getCountryByLetter(letter: string) {
 
-    let country= new Country();
+    const country = new Country();
 
     country.countryName = letter;
     country.idCountry = '';
@@ -48,41 +55,40 @@ export class LoginService {
 
     return this.http.post(this.urlCountry, JSON.stringify(country));
 
-
   }
 
-  checkToken(login){
+  checkToken(login) {
 
    return this.http.post(this.url, JSON.stringify(login));
 
   }
 
-  checktokenExist(){
-    if (this.checkCookie("tokenLogin")){
+  checktokenExist() {
+    if (this.checkCookie('tokenLogin')) {
 
-      let login = new Login();
+      const login = new Login();
 
-      login.token= this.getCookie('tokenLogin');
+      login.token = this.getCookie('tokenLogin');
 
-      login.action= 'check';
+      login.action = 'check';
 
-      this.checkToken(login).subscribe((data:string)=>{
+      this.checkToken(login).subscribe((data: string) => {
 
-        if (data.length >4){
+        if (data.length > 7) {
           return true;
-        }else {
+        } else {
           this.deleteCookie('tokenLogin');
           return false;
         }
 
       });
 
-    }else{
+    } else {
       return false;
     }
   }
 
-  setCookie(name: string, valor:string){
+  setCookie(name: string, valor: string) {
 
     this.cookie.set(name, valor);
   }
@@ -93,6 +99,10 @@ export class LoginService {
 
   checkCookie(name): boolean{
    return  this.cookie.check(name);
+  }
+
+  delCookie(name){
+    this.cookie.delete(name);
   }
 
   deleteCookie(name){

@@ -2,15 +2,22 @@ import { Injectable } from '@angular/core';
 
 import { Country } from '../models/country';
 import { HttpClient } from '@angular/common/http';
+import { Url } from '../models/urlfather';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutocompleteService {
 
-  url = 'http://localhost/proyecto9/core/Controllers/CountryController.php';
+  url: string;
+  urlC: Url;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+
+    this.urlC = new Url();
+    this.url = this.urlC.urlCommon + 'CountryController.php';
+
+  }
 
   getCountries() {
 

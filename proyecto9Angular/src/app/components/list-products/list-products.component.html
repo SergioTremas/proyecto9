@@ -1,0 +1,46 @@
+<section>
+    <div class="block2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="cart-table table wow fadeInLeft" data-wow-duration="1s">
+                        <thead>
+                            <tr>
+                                <th class="card_product_image">Imagen</th>
+                                <th class="card_product_name">Nombre</th>
+                                <th class="card_product_model">Descripcion</th>
+                                <th class="card_product_quantity">Catergoría</th>
+                                <th class="card_product_price">Categoria Padre</th>
+                                <th class="card_product_total">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody *ngFor="let item of products; let index=index">
+                            <tr>
+                                <td class="card_product_image">
+                                    <a href="#"><img title="Product Name" alt="Product Name" [src]="'assets/imgProducts/'+item.photo"></a>
+                                </td>
+                                <td class="card_product_name"><a href="#">{{item.nameProduct}}</a></td>
+                                <td class="card_product_model">{{item.description}}</td>
+                                <td class="card_product_quantity">
+                                    <ul class="list-unstyled tags">
+                                        <li><a href="#">{{item.nameCategory}}</a></li>
+                                    </ul>
+
+                                </td>
+                                <td class="card_product_price">
+                                    <ul class="list-unstyled tags">
+                                        <li><a href="#">men</a></li>
+                                    </ul>
+                                </td>
+                                <td class="card_product_total"><a [routerLink]="['/updateProduct', item.idProduct]" class="btn-default">Editar</a><a (click)='delete(item,index)' class="btn-default">Eliminar</a></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

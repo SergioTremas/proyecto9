@@ -14,8 +14,8 @@
                 <div class="col-xs-19 col-sm-4 col-md-4 col-lg-3 text-center">
                     <figure class="figure-hover-overlay">
                         <a href="#" class="figure-href"></a>
-                        <img class="img-overlay img-responsive" src="http://placehold.it/800x1000" alt="" title="">
-                        <img class="img-responsive" src="http://placehold.it/800x1000" alt="" title="">
+                        <img class="img-overlay img-responsive" [src]="'assets/imgProducts/'+ valuation.photo" alt="" title="">
+
                     </figure>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 text-center">
@@ -24,14 +24,14 @@
                             <a href="#" class="product-name">{{valuation.nameProduct}}</a>
                             <div class="product-rating">
                                 <div class="stars">
-                                    <span (click)="insertStars(5)" #star5 [class.active]="valuation.assesfirst>4" class="star "></span><span (click)="insertStars(4)" #star3 [class.active]="valuation.assesfirst>3" class="star  "></span><span (click)="insertStars(3)"
-                                        #star2 [class.active]="valuation.assesfirst>2" class="star  "></span><span (click)="insertStars(2)" #star1 [class.active]="valuation.assesfirst>1" class="star  "></span>
+                                    <span (click)="insertStars(5,0)" #star5 [class.active]="valuation.assesfirst>4" class="star "></span><span (click)="insertStars(4,0)" #star3 [class.active]="valuation.assesfirst>3" class="star  "></span><span (click)="insertStars(3,0)"
+                                        #star2 [class.active]="valuation.assesfirst>2" class="star  "></span><span (click)="insertStars(2,0)" #star1 [class.active]="valuation.assesfirst>1" class="star  "></span>
                                     <span [class.active]="valuation.assesfirst>0" class="star" (click)="insertStars(1,1)"></span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea [class.read-only]="justDone" value="1" class="form-control" name="opinion" (keyup)="imprimir()" [(ngModel)]="valuation.opinion"> </textarea>
+                                    <textarea value="1" class="form-control" name="opinion" [(ngModel)]="valuation.opinion"> </textarea>
                                 </div>
                             </div>
                         </div>

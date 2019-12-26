@@ -6,7 +6,7 @@ import { AuthGuard } from '../../guard/auth.guard';
 import { CanActivate, Router } from '@angular/router';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/user';
+import { User } from '../../models/User';
 
 
 
@@ -20,6 +20,13 @@ export class LoginComponent implements OnInit {
 
    login: Login;
 
+   loginOk = true;
+   loginType = true;
+   errorAdmin = false;
+
+   loginError = false;
+   userM: User;
+
 
   constructor(private service: LoginService, private auth: AuthGuard, private router: Router, private user: UserService) {
 
@@ -30,37 +37,70 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkLoginAdming(form: NgForm){
 
-
-  checkLogin(form: NgForm) {
-
-   this.login.action = 'check';
-   this.login.token = '';
+    this.login.action = 'check';
+     this.login.token = '';
 
    if (form.invalid) {return; }
 
-   this.service.checklogin(JSON.stringify(this.login)).subscribe((data: String) => {
+    this.service.checklogin(JSON.stringify(this.login)).subscribe((data: String) => {
 
 
-console.log(data);
+    if (this.service.checkCookie('tokenLogin')) {
+
+      const cookie = this.service.getCookie('tokenLogin');
+
+      this.service.deleteCookie(cookie);
+
+  }
+
     this.generarCookie(data);
-    if ( data.length>3) {
 
-      let userM:User;
-    this.user.getByToken().subscribe((data:User)=>{
-  console.log(data);
-    userM=data;
+    console.log(data, 'cookie nueva');
+
+    if ( data.length > 10) {
+
+
+
+    this.user.getByToken().subscribe((data: User) => {
+
+      console.log(data, 'dentro de login ok' );
+      this.userM = data;
+
+      if(this.userM.rol === '2') {
+        this.service.setCookie('admin', 'ok');
+        this.errorAdmin=true;
+
+      }else{
+
+        this.errorAdmin=false;
+      }
+
+      this.loginOk = false;
+      this.loginError = false;
+
+      return;
+
 
     });
 
-   // this.router.parent.navigate('/about');
-    this.router.navigate(['/navbar']);
 
+
+
+    } else {
+
+      this.loginError = true;
     }
 
    });
-
   }
+
+  loginTypeChang(){
+    this.loginType = !this.loginType;
+  }
+
+
 
   generarCookieIDUser(valor){
 
@@ -85,6 +125,8 @@ console.log(data);
 
 
   }
+
+
 
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Country } from '../../models/country';
-import { User } from '../../models/user';
+import { User } from "../../models/User";
 import { Login } from '../../models/login';
 import { UserService } from 'src/app/services/user.service';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -109,6 +109,7 @@ if(data){
     this.service.insert(login).subscribe((data: any)=>{
 
         user.login = data;
+
 
         console.log(data);
         user.login = data;

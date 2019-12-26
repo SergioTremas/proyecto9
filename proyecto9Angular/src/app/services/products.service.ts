@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../models/category';
+import { Url } from '../models/urlfather';
+import { Products } from '../models/products';
 
 
 
@@ -10,31 +12,39 @@ import { Category } from '../models/category';
 export class ProductsService {
 
 
-
+urlC: Url;
 
   constructor(private http: HttpClient) {
+
+    this.urlC= new Url();
 
     console.log("servicio listo para usar");
    }
 
     getProducts() {
 
-   return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id=0&name=0&description=0&photo=0&category=0&CCAA=0&action=getAll');
+
+
+      let objeto = new Products();
+      objeto.action='getAll';
+
+   return  this.http.post( this.urlC.urlCommon + 'ProductController.php',JSON.stringify(objeto));
 
   }
 
   getCategories() {
 
     // tslint:disable-next-line:max-line-length
-    let url = 'http://localhost/proyecto9/core/Controllers/CategoryController.php';
+    let url =  this.urlC.urlCommon + 'CategoryController.php';
 
 
-       let category = new Category();
+    let category = new Category();
 
      category.action="getAll";
-     category.idCategory="4";
+     category.idCategory="";
      category.idCategoryFather="";
      category.nameCategory="";
+     console.log(JSON.stringify(category));
 
     // return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id=0&name=0&description=0&photo=0&category=0&CCAA=0&action=getCategory');
 
@@ -43,28 +53,67 @@ export class ProductsService {
      }
 
 
-  getByLetter(letter :string){
+  getByLetter(letter: string) {
 
-    return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id=0&name='+letter+'&description=0&photo=0&category=0&CCAA=0&action=letter');
+
+    let objeto = new Products();
+    objeto.nameProduct=letter;
+    objeto.action='letter';
+
+
+    // tslint:disable-next-line:max-line-length
+    return  this.http.post(this.urlC.urlCommon + 'ProductController.php', JSON.stringify(objeto));
   }
 
   getByLetterCat(letter: string, category: string){
 
-    return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id=0&name='+letter+'&description=0&photo=0&category='+category+'&CCAA=0&action=letterAndCat');
+
+
+    let objeto = new Products();
+    objeto.action = 'letterAndCat';
+    objeto.nameProduct= letter;
+    objeto.idCategory=category;
+
+    // tslint:disable-next-line:max-line-length
+    return  this.http.post(this.urlC.urlCommon +'ProductController.php',JSON.stringify(objeto));
 
 
   }
 
-  getbyCategory(category:string){
-    return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id=0&name=0&description=0&photo=0&category='+ category +'&CCAA=0&action=getByCategory');
+  getbyCategory(category: string) {
+
+
+
+    let objeto = new Products();
+    objeto.action = 'getByCategory';
+    objeto.idCategory = category;
+
+
+    // tslint:disable-next-line:max-line-length
+    return  this.http.post(this.urlC.urlCommon + 'ProductController.php',JSON.stringify(objeto));
 
   }
 
-  getById( id ){
+  getById( id ) {
 
-    console.log("dentro servicio");
 
-    return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id='+ id +'&name=&description=0&photo=0&category=0&CCAA=0&action=getById');
+    let objeto = new Products();
+    objeto.action = 'getById';
+    objeto.idProduct = id;
+
+
+    // tslint:disable-next-line:max-line-length
+    return  this.http.post(this.urlC.urlCommon + 'ProductController.php', JSON.stringify(objeto));
+
+  }
+
+  delete(product:Products){
+
+    let url =  this.urlC.urlCommon + 'ProductController.php';
+
+    product.action = "delete";
+
+    return this.http.post( url , JSON.stringify(product));
 
   }
 

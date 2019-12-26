@@ -1,11 +1,71 @@
-<p>pagina user {{user.names}}</p>
-nombre
+<div class="top-header-bg"></div>
+<section class="m-t-40">
+    <div class="second-page-header center">
+        <div class="container">
+            <h2>Mis Datos</h2>
 
-<input type="button" value="" (click)="setOpcion()">
+        </div>
+    </div>
+</section>
+<!-- ===========================================
+        =====        form section               ====
+        ============================================ -->
+<section>
+    <div class="block2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
+                    <div class="block-form box-border wow fadeInLeft animated" data-wow-duration="1s">
+                        <h3> <i class="fa fa-user"></i>Modifica tus datos</h3>
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input #names type="text" class="form-control" placeholder="Nombre">
+                                </div>
+                                <div class="col-md-6">
+                                    <input #surname type="text" class="form-control" placeholder="Apellido">
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- <input #country type="text" class="form-control" placeholder="Apellido"> -->
 
-<div *ngIf="opcion">
-    <app-edit-user></app-edit-user>
-</div>
-<div *ngIf="!opcion">
-    <app-valuations [idUser]='user.idUser'></app-valuations>
-</div>
+
+                                    <select class="form-control" #country>
+                                                <option [value]="user.idCountry">
+                                                  {{user.idCountry}}  {{user.country}}
+                                                </option>
+                                                <option   *ngFor="let item of countries" [value]="item.idCountry" >{{item.countryName}}</option>
+                                            </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <input #city type="text" class="form-control" placeholder="Ciudad">
+                                </div>
+                                <div class="col-md-12">
+                                    <input #email type="text" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                    <input (click)="updateUser()" type="submit" value="Modificar" class="btn-default">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+                        <h3> <i class="fa fa-info"></i>Información</h3>
+                        <hr>
+                        <p>Nivel: {{level}} <br> Rol: {{rol}}
+                        </p>
+
+                    </div>
+                    <div *ngIf="datosOK" class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+                        <h3> <i class="fa fa-info"></i>Datos guardados correctamente</h3>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

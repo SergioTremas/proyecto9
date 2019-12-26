@@ -28,28 +28,29 @@ $reply= new UserModel();
 
 $service = new UserService();
 
-if(!isset($objeto->idUser)){$objeto->idUser="" ;}
+if(!isset($objeto->idUser)){$objeto->idUser="null" ;}
 $reply->idUser=$objeto->idUser;
 
-if(!isset($objeto->names)){$objeto->names="" ;}
+if(!isset($objeto->names)){$objeto->names="null" ;}
 $reply->names=$objeto->names;
 
-if(!isset($objeto->surname)){$objeto->surname="";}
+if(!isset($objeto->surname)){$objeto->surname="null";}
 $reply->surname=$objeto->surname;
 
-if(!isset($objeto->email)){$objeto->email="";}
+if(!isset($objeto->email)){$objeto->email="null";}
 $reply->email=$objeto->email;
 
-if(!isset($objeto->idCountry)){$objeto->idCountry="";}
+if(!isset($objeto->idCountry)){$objeto->idCountry="0";}
 $reply->idCountry=$objeto->idCountry;
 
 if(!isset($objeto->country)){$objeto->country="";}
 $reply->country=$objeto->country;
 
-if(!isset($objeto->idCity)){$objeto->idCity="";}
-$reply->idCity=$objeto->idCity;
 
-if(!isset($objeto->city)){$objeto->city="";}
+
+if(!isset($objeto->city)){$objeto->city="sin ciudad";}
+if($objeto->city==""){$objeto->city="sin ciudad";}
+
 $reply->city=$objeto->city;
 
 if(!isset($objeto->numberAsses)){$objeto->numberAsses=0;}
@@ -76,12 +77,7 @@ switch ($i) {
         
         break;
 
-    case "deleteToken":
-
-            $token= $service->deleteToken($reply->token);
-            $token="";
-             
-             break;
+    
 
     case "insert":
 
@@ -98,8 +94,14 @@ switch ($i) {
 
     case "update":
 
-        $service->updateLogin($reply);
+        $service->update($reply);
         
+        break;
+
+    case "getAll":
+
+        $reply= $service->getAll($reply);
+            
         break;
 
    

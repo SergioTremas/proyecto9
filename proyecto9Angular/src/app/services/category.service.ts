@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../models/category';
+import { Url } from '../models/urlfather';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
+  url: string;
+  urlC: Url;
 
-  url = 'http://localhost/proyecto9/core/Controllers/CategoryController.php';
+  constructor(private http: HttpClient) {
+    this.urlC = new Url();
+    this.url = this.urlC.urlCommon + 'CategoryController.php';
+  }
 
-  constructor(private http: HttpClient) { }
+
+
 
 getCategories() {
 

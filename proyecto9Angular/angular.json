@@ -13,6 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+
                         "outputPath": "dist/proyecto9Angular",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -20,7 +21,9 @@
                         "tsConfig": "src/tsconfig.app.json",
                         "assets": [
                             "src/favicon.ico",
-                            "src/assets/"
+                            "src/assets/",
+                            { "glob": "**/*", "input": "src/assets/", "output": "/assets/" },
+                            { "glob": "favicon.ico", "input": "src/", "output": "/" }
                         ],
                         "styles": [
 

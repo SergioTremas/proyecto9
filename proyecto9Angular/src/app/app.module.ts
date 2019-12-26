@@ -43,6 +43,12 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { ValuesUserComponent } from './components/values-user/values-user.component';
 import { ModifyValueComponent } from './components/modify-value/modify-value.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { ListProductsComponent } from './components/list-products/list-products.component';
+import { InsertProductComponent } from './components/insert-product/insert-product.component';
+import { ListRevComponent } from './components/list-rev/list-rev.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
+import { LevelPipe } from './components/list-users/level.pipe';
 
 
 @NgModule({
@@ -66,6 +72,12 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
     ValuesUserComponent,
     ModifyValueComponent,
     AutocompleteComponent,
+    ListUsersComponent,
+    ListProductsComponent,
+    InsertProductComponent,
+    ListRevComponent,
+    UpdateProductComponent,
+    LevelPipe,
 
 
 

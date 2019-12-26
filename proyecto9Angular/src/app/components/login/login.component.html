@@ -66,7 +66,7 @@
             <div class="block-form box-border wow fadeInLeft animated" data-wow-duration="1s">
                 <h3><i class="fa fa-unlock"></i>Login</h3>
                 <p>Por favor introduce tu usuario y password</p>
-                <form (ngSubmit)="checkLogin(formLogin)" #formLogin="ngForm">
+                <form (ngSubmit)="checkLoginAdming(formLogin)" #formLogin="ngForm">
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" placeholder="email" name="email" ngModel required minlength="3" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="login.email">
@@ -78,17 +78,39 @@
                             <hr>
                             <input type="submit" value="Login" class="btn-default">
                             <input type="reset" value="Reset password" class="btn-default">
+                            <hr>
+
+
                         </div>
                     </div>
                 </form>
+
+
+
             </div>
             <span class="alert-danger" *ngIf="formLogin.submitted && formLogin.controls['email'].errors">El email es obliatorio</span>
             <span class=" alert-warning" *ngIf="formLogin.submitted && formLogin.controls['pass'].errors">El password es obligatorio</span>
-            <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+            <div *ngIf="loginError">
+                <div class="block-form box-border wow fadeInRight animated alert alert-warning" data-wow-duration="1s">
+                    <h3>Login incorrecto</h3>
+                </div>
+            </div>
+            <div *ngIf="loginOk" class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
                 <h3><i class="fa fa-pencil"></i>Crear nueva cuenta</h3>
                 <p>Registration allows you to avoid filling in billing and shipping forms every time you checkout on this website.</p>
                 <hr>
                 <a [routerLink]="['/newLogin']" class="btn-default-1">Register</a>
+            </div>
+            <div *ngIf="errorAdmin">
+                <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+                    <h3>Administración activada</h3>
+                </div>
+            </div>
+
+            <div *ngIf="!loginOk">
+                <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+                    <h3>Login correcto!!, Hola {{userM.names}}</h3>
+                </div>
             </div>
         </div>
     </div>

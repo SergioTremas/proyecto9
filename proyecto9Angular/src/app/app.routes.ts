@@ -13,6 +13,12 @@ import { ValuesUserComponent } from './components/values-user/values-user.compon
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { AppComponent } from './app.component';
 import { ModifyValueComponent } from './components/modify-value/modify-value.component';
+import { Guard2Guard } from './guard/guard2.guard';
+import { ListProductsComponent } from './components/list-products/list-products.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { InsertProductComponent } from './components/insert-product/insert-product.component';
+import { ListRevComponent } from './components/list-rev/list-rev.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 
 
@@ -24,6 +30,26 @@ const APP_ROUTES: Routes = [
   {path : 'user',
   component: UserComponent,
   canActivate: [AuthGuard]
+},
+{path : 'listProducts',
+  component: ListProductsComponent,
+  canActivate: [Guard2Guard]
+},
+{path : 'listUsers',
+  component: ListUsersComponent,
+  canActivate: [Guard2Guard]
+},
+{path : 'insertProduct',
+  component: InsertProductComponent,
+  canActivate: [Guard2Guard]
+},
+{path : 'listRev',
+  component: ListRevComponent,
+  canActivate: [Guard2Guard]
+},
+{path : 'updateProduct/:id',
+  component: UpdateProductComponent,
+  canActivate: [Guard2Guard]
 },
 
   {path : 'byletter/:leter/:category', component: ForLetterComponent },

@@ -1,0 +1,51 @@
+<section class="m-t-40">
+    <div class="second-page-header dark">
+        <div class="container">
+            <h2>Listado de reseñas</h2>
+
+        </div>
+    </div>
+</section>
+<div class="container">
+
+    <section>
+        <article class="product list" *ngFor="let item of valuations; let index1 = index">
+            <div class="row">
+                <div class="col-xs-19 col-sm-4 col-md-4 col-lg-3 text-center">
+                    <figure class="figure-hover-overlay">
+                        <a href="#" class="figure-href"></a>
+                        <img class="img-overlay img-responsive" [src]="'../../../assets/imgProducts/'+ item.photo" alt="" title="">
+                        <img class="img-responsive" src="http://placehold.it/800x1000" alt="" title="">
+                    </figure>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 text-center">
+                    <div class="product-caption">
+                        <div class="block-name">
+                            <p>{{item.nameUser}}</p>
+                            <p>{{item.date}}</p>
+                            <hr>
+                            <a href="#" class="product-name">{{item.nameProduct}}</a>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <span [class.active]="item.assesfirst>4" class="star "></span><span [class.active]="item.assesfirst>3" class="star  "></span><span [class.active]="item.assesfirst>2" class="star  "></span><span [class.active]="item.assesfirst>1"
+                                        class="star  "></span>
+                                    <span [class.active]="item.assesfirst>0" class="star  "></span>
+                                </div>
+                            </div>
+
+                            <p class="description">
+                                {{item.opinion}}
+                            </p>
+                        </div>
+                    </div>
+                    <form>
+                        <input (click)="delete(item.idUser,item.idProduct, index1)" type="submit" class="btn-default m-3" value="Eliminar Valoración">
+
+                    </form>
+
+                </div>
+            </div>
+
+        </article>
+    </section>
+</div>

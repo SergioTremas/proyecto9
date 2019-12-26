@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
 
 import { UserService } from '../../../services/user.service';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/User';
 import { CategoryService } from '../../../services/category.service';
 import { Category } from 'src/app/models/category';
 import { ProductsService } from '../../../services/products.service';
@@ -24,35 +24,38 @@ export class NavbarComponent implements OnInit {
   letter = '*';
 
 
+  // tslint:disable-next-line:max-line-length
   constructor(private router: Router, private login: LoginService, private user: UserService, private render: Renderer2, private product: ProductsService) {
+
 
     if (this.userLogeado()) {
 
       this.user.getByToken().subscribe((data: any) => {
+        console.log(data);
+        this.userModel = data;
 
-       this.userModel = data;
-
-       this.user.generarCookieIDUser(this.userModel.idUser);
-       this.render.removeClass(this.userMenu.nativeElement, 'hidden');
+        this.user.generarCookieIDUser(this.userModel.idUser);
+        this.render.removeClass(this.userMenu.nativeElement, 'hidden');
 
       });
-
-
       console.log("dentro navbar ngonit ", this.userModel);
-
     }
 
+    this.product.getCategories().subscribe( (data:any)=>{
 
-
-  this.product.getCategories().subscribe( (data:any)=>{
-
-    this.Categories=data;
+    this.Categories = data;
 
   });
 
-
-
   }
+
+renderUser() {
+
+
+
+}
+
+
 
   getUser(){
     this.user.getByToken().subscribe((data: any) => {
@@ -82,7 +85,7 @@ export class NavbarComponent implements OnInit {
 
 
 
-    if ( this.userLogeado()) {
+   // if ( this.userLogeado()) {
       // this.user.getByToken().subscribe((data: any) => {
       //  this.userModel = data;
       //  this.user.generarCookieIDUser(this.userModel.idUser);
@@ -90,16 +93,13 @@ export class NavbarComponent implements OnInit {
 
       // });
 
-    }
+   // }
 
   }
 
   ngOnInit() {
 
-    this.render.addClass(this.userMenu.nativeElement, 'hidden');
-
-
-
+   // this.render.addClass(this.userMenu.nativeElement, 'hidden');
    }
 
    userLogeado(){
@@ -126,6 +126,7 @@ export class NavbarComponent implements OnInit {
 
     const token= this.login.getCookie('tokenLogin');
     this.login.deleteCookie(token);
+    this.login.delCookie('admin');
     this.render.addClass(this.userMenu.nativeElement, 'hidden');
 
   }

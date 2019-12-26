@@ -15,10 +15,11 @@ export class ValuesUserComponent implements OnInit {
 
   idUser;
   valuation: Valuation1;
-  valuations:Valuation1[]=[];
+  valuations: Valuation1[] = [];
 
   constructor(private service: ValuationsService, private user: UserService, private router: ActivatedRoute, private route: Router) {
 
+    this.valuations = [];
     this.router.params.subscribe((params:any) =>{
 
     this.idUser = params['idUser'];

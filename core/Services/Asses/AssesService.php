@@ -53,7 +53,9 @@ class AssesService{
 
     public function updateAsses(AssesModel $model){
 
-        $this->asses->updateAsses($model);        
+        $this->asses->deleteAsses($model);
+
+        $this->insert($model->idUser, $model->idProduct, $model->asses, $model->opinion);        
      
     }
  
@@ -73,6 +75,10 @@ class AssesService{
 
     public function getAllAsses() {
         return $this->asses->getAllAsses();
+    }
+
+    public function countAsses($idProduct){
+        return $this->asses->assesCount($idProduct);
     }
   
 

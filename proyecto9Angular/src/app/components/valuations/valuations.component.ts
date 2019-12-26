@@ -21,12 +21,13 @@ export class ValuationsComponent implements OnInit {
 
   constructor(private serviceValuations: ValuationsService) {
 
-
     this.valuation = new Valuation1();
 
   }
 
   ngOnInit() {
+
+    console.log("dentro valuaton ", this.idUser);
 
     this.getById(this.id);
 
@@ -39,6 +40,8 @@ export class ValuationsComponent implements OnInit {
 
   getByUser(idv){
 
+    if(idv){
+
     this.valuation.action="getByUser";
     this.valuation.idProduct="";
     this.valuation.nameProduct="";
@@ -46,7 +49,7 @@ export class ValuationsComponent implements OnInit {
     this.valuation.nameUser="";
     this.valuation.asses="";
     this.valuation.opinion="";
-    this.valuation.assesfirst="";
+    this.valuation.assesfirst= 0;
 
 
 
@@ -63,6 +66,8 @@ export class ValuationsComponent implements OnInit {
       this.valuationsUser = data;
 
   });
+
+    }
   }
 
 
@@ -80,9 +85,9 @@ export class ValuationsComponent implements OnInit {
     this.valuation.nameUser="";
     this.valuation.asses="";
     this.valuation.opinion="";
-    this.valuation.assesfirst="";
+    this.valuation.assesfirst=0;
 
-       this.serviceValuations.getByProduct(JSON.stringify(this.valuation)).subscribe((data:any)=>{
+    this.serviceValuations.getByProduct(JSON.stringify(this.valuation)).subscribe((data:any)=>{
 
 console.log(data);
       this.valuations = data;

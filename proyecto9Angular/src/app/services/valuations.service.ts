@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Valuation } from '../models/valuation';
+import { Url } from '../models/urlfather';
 
 
 @Injectable({
@@ -8,13 +9,17 @@ import { Valuation } from '../models/valuation';
 })
 export class ValuationsService {
 
-  constructor(private http: HttpClient) { }
+  urlC:Url;
+
+  constructor(private http: HttpClient) {
+    this.urlC= new Url();
+  }
 
 
 
   getByProduct(objeto: string) {
 
-   return this.http.post('http://localhost/proyecto9/core/Controllers/AssesController.php', objeto);
+   return this.http.post(this.urlC.urlCommon +'AssesController.php', objeto);
 
   }
 
@@ -31,13 +36,19 @@ export class ValuationsService {
     objeto.idProduct=IdProduct;
     objeto.action="getByIdProIdUser";
 
-    return this.http.post('http://localhost/proyecto9/core/Controllers/AssesController.php', JSON.stringify(objeto));
+    return this.http.post(this.urlC.urlCommon + 'AssesController.php', JSON.stringify(objeto));
 
    }
 
   introValuation(objeto: string) {
 
-    return this.http.post('http://localhost/proyecto9/core/Controllers/AssesController.php', objeto);
+    return this.http.post(this.urlC.urlCommon + 'AssesController.php', objeto);
+
+  }
+
+  upDateValue(objeto: string) {
+
+    return this.http.post(this.urlC.urlCommon +'AssesController.php', objeto);
 
   }
 
@@ -45,11 +56,28 @@ export class ValuationsService {
 
     objeto.action='getByIdProIdUser';
 
-    return this.http.post('http://localhost/proyecto9/core/Controllers/AssesController.php', objeto);
+    return this.http.post(this.urlC.urlCommon + 'AssesController.php', objeto);
 
   }
 
-  deleteByUser(idUser: string, idProduct: string){
+  countValue(id: string){
+
+    let objeto = new Valuation();
+    objeto.asses="";
+    objeto.assesfirst="";
+    objeto.idUser="";
+    objeto.nameProduct="";
+    objeto.nameUser="";
+    objeto.opinion="";
+    objeto.idProduct=id;
+    objeto.action= "countAsses";
+
+    return this.http.post(this.urlC.urlCommon + 'AssesController.php', JSON.stringify(objeto));
+
+
+  }
+
+  deleteByUser(idUser: string, idProduct: string) {
 
     let objeto = new Valuation();
     objeto.asses="";
@@ -61,7 +89,21 @@ export class ValuationsService {
     objeto.idProduct=idProduct;
     objeto.action="delete";
 
-   return this.http.post('http://localhost/proyecto9/core/Controllers/AssesController.php',JSON.stringify(objeto));
+   return this.http.post(this.urlC.urlCommon + 'AssesController.php',JSON.stringify(objeto));
+  }
+
+  getAll(){
+    let objeto = new Valuation();
+    objeto.asses="";
+    objeto.assesfirst="";
+    objeto.idUser="";
+    objeto.nameProduct="";
+    objeto.nameUser="";
+    objeto.opinion="";
+    objeto.idProduct="";
+    objeto.action="getAll";
+
+    return this.http.post(this.urlC.urlCommon + 'AssesController.php',JSON.stringify(objeto));
   }
 
 }

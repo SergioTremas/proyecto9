@@ -15,7 +15,7 @@ class RolModel extends DataBase{
 
 		try {
 	        
-	        $query =parent::prepare("SELECT * FROM Rol where nameRol ='$nameRol'");
+	        $query =parent::prepare("SELECT * FROM rol where nameRol ='$nameRol'");
 	        $query->execute();
 
 		   $res= $query->fetchAll();		  
@@ -26,7 +26,7 @@ class RolModel extends DataBase{
         }
         
         if (!$res>0) {
-            $sentence ="INSERT INTO `Rol`( `nameRol`) VALUES ('$nameRol')";
+            $sentence ="INSERT INTO `rol`( `nameRol`) VALUES ('$nameRol')";
 
             $id1= parent::insert($sentence);
             $this->idRol=$id1;
@@ -37,7 +37,7 @@ class RolModel extends DataBase{
 
 	public function updateRol($model){
 
-		$sentence= "UPDATE `Rol` SET `nameRol`= '$model->nameRol' where idRol= $model->idRol ";
+		$sentence= "UPDATE `rol` SET `nameRol`= '$model->nameRol' where idRol= $model->idRol ";
 
 		parent::insert($sentence);
 
@@ -47,7 +47,7 @@ class RolModel extends DataBase{
 
         try {
 	        
-	        $query =parent::prepare("SELECT * FROM Rol where idRol ='$id1'");
+	        $query =parent::prepare("SELECT * FROM rol where idRol ='$id1'");
 	        $query->execute();
 
 		   $res= $query->fetchAll();		  
@@ -70,7 +70,7 @@ class RolModel extends DataBase{
 
         if($id1!="1"){
 
-         $sentence= "DELETE FROM `Rol` WHERE idRol=$id1";
+         $sentence= "DELETE FROM `rol` WHERE idRol=$id1";
          $sentence1="UPDATE `user` SET `idRol`= '1' where idRol= $id1";
 
          parent::insert($sentence1);
@@ -89,7 +89,7 @@ class RolModel extends DataBase{
 
 	    try {
 	        
-	        $query =parent::prepare("SELECT * FROM Rol");
+	        $query =parent::prepare("SELECT * FROM rol");
 	        $query->execute();
 
 		   $res= $query->fetchAll();

@@ -1,0 +1,93 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="block2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="cart-table table wow fadeInLeft" data-wow-duration="1s">
+                        <thead>
+                            <tr>
+
+                                <th class="card_product_name">Nombre</th>
+                                <th class="card_product_model">Apellido</th>
+                                <th class="card_product_quantity">Email</th>
+                                <th class="card_product_price">Nivel</th>
+                                <th class="card_product_total">Rol</th>
+                                <th class="card_product_total">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of users">
+                            <tr>
+                                <td class="card_product_name"><a href="#">{{item.names}}</a></td>
+                                <td class="card_product_model">{{item.surname}}</td>
+                                <td class="card_product_quantity">
+                                    {{item.email}}
+                                </td>
+                                <td class="card_product_quantity">
+                                    {{item.level|level}}
+                                </td>
+
+                                <td class="card_product_quantity">
+                                    <select (click)='changeRol(select,item.idUser)' class="styler" #select data-toggle="modal" data-target="#myModal">
+
+                                      <option selected *ngIf="item.rol=='2'" [value]="item.rol">Administrador</option>
+                                      <option selected *ngIf="item.rol=='1'" [value]="item.rol">Usuario</option>
+                                      <option [value]="item.rol">Usuario</option>
+                                      <option [value]="item.rol">Administrador</option>
+
+                                        </select>
+                                </td>
+                                <td><a href="#" class="btn-default">Eliminar</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Trigger the modal with a button -->
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
