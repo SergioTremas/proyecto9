@@ -107,7 +107,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a [routerLink]="['/byletter', '', '*']">PRODUCTOS</a></li>
 
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">USUARIOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                <li [class.disabled]="userModel.rol!='2'" class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">USUARIOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
                                     <ul class="dropdown-menu list-unstyled fadeInUp animated">
                                         <li class="dropdown-submenu">
                                             <a [routerLink]="['/listUsers']"> Listado Usuarios </a>
@@ -116,7 +116,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">RESEÑAS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                <li [class.disabled]="userModel.rol!='2'" class="dropdown "><a href="#" data-toggle="dropdown" class="dropdown-toggle">RESEÑAS <i class="fa fa-caret-right fa-rotate-45"></i></a>
                                     <ul class="dropdown-menu list-unstyled fadeInUp animated">
                                         <li class="dropdown-submenu">
                                             <a [routerLink]="['/listRev']"> Listado Reseñas </a>
@@ -124,7 +124,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">PRODUCTOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                <li [class.disabled]="userModel.rol!='2'" class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">PRODUCTOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
                                     <ul class="dropdown-menu list-unstyled fadeInUp animated">
                                         <li class="dropdown-submenu">
                                             <a [routerLink]="['/listProducts']"> Listado Productos </a>

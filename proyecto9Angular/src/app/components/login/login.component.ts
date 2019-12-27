@@ -88,19 +88,7 @@ export class LoginComponent implements OnInit {
 
     if ( data.length > 10) {
 
-
-
-    this.user.getByToken().subscribe((data: User) => {
-
-      console.log(data, 'dentro de login ok' );
-      this.userM = data;
-
-
         location.reload();
-
-
-    });
-
 
     } else {
 
