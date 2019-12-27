@@ -366,59 +366,157 @@
         ============================================ -->
         <div class="top-header-bg"></div>
         <section>
-            <div class="second-page-header center">
+            <div class="second-page-header">
                 <div class="container">
-                    <h2>Change Password</h2>
+                    <h2>Shoping cart</h2>
                     <ul class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Pages</a></li>
-                        <li class="active">Change Password</li>
+                        <li class="active">Shoping cart</li>
                     </ul>
                 </div>
             </div>
         </section>
-                <!-- ===========================================
-        =====        form section               ====
-        ============================================ -->
+
         <section>
             <div class="block2">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
-                            <div class="block-form box-border wow fadeInLeft animated" data-wow-duration="1s">
-                                <h3> <i class="fa fa-unlock-alt"></i>Need to change your password?</h3>
-                                <form action="#" method="post">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="New password">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="New password /again">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control" placeholder="Old password">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <hr>
-                                            <input type="submit" value="Change" class="btn-default">
-                                            <input type="reset" value="Reset password" class="btn-default">
-                                        </div>
-                                    </div>                                    
-                                </form>
-                            </div>
-                            <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
-                                <h3> <i class="fa fa-info"></i>Information</h3>
-                                <hr>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="cart-table table wow fadeInLeft" data-wow-duration="1s">
+                                    <thead>
+                                        <tr>
+                                            <th class="card_product_image">Imagen</th>
+                                            <th class="card_product_name">Nombre</th>
+                                            <th class="card_product_model">Descripcion</th>
+                                            <th class="card_product_quantity">Catergoría</th>
+                                            <th class="card_product_price">Categoria Padre</th>
+                                            <th class="card_product_total">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="card_product_image" ><a href="#"><img title="Product Name" alt="Product Name" src="http://placehold.it/750x940"></a></td>
+                                            <td class="card_product_name" ><a href="#">Product Name</a></td>
+                                            <td class="card_product_model" >Pro 1</td>
+                                            <td class="card_product_quantity">
+                                                <ul class="list-unstyled tags">
+                                                    <li><a href="#">men</a></li>
+                                                </ul>
 
+                                            </td>
+                                            <td class="card_product_price">                                               <ul class="list-unstyled tags">
+                                                    <li><a href="#">men</a></li>
+                                                </ul></td>
+                                            <td class="card_product_total"><a href="#" class="btn-default">Editar</a><a href="#" class="btn-default">Eliminar</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="block-form box-border wow fadeInLeft" data-wow-duration="1s">
+                                            <h3><i class="fa fa-truck"></i> Shipping & Taxes</h3>
+                                            <hr>
+                                            <form action="#" method="post">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Your Country</label>
+                                                        <select name="country" class="form-control">
+                                                            <option selected="selected">Country 1</option>
+                                                            <option>Country 2</option>
+                                                            <option>Country 3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label>Your Region</label>
+                                                        <select name="Region" class="form-control">
+                                                            <option selected="selected">Region 1</option>
+                                                            <option>Region 2</option>
+                                                            <option>Region 3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label>Your Post Code</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="submit"  value="Get Quotes"  class="btn-default">
+                                                    </div>
+                                                </div>                                    
+                                            </form>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="block-form box-border wow fadeInLeft" data-wow-duration="1s">
+                                            <h3><i class="fa fa-tag"></i> Apply Discount Code</h3>
+                                            <hr>
+                                            <form action="#" method="post">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Discount Code</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="submit"  value="Apply Coupon"  class="btn-default">
+                                                    </div>
+                                                </div>                                    
+                                            </form>
+                                        </div>
+                                    </article>
+                                    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="block-form box-border wow fadeInLeft" data-wow-duration="1s">
+                                            <h3><i class="fa fa-gift"></i> Use Gift Voucher</h3>
+                                            <hr>
+                                            <form action="#" method="post">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Voucher Code</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="submit"  value="Apply Voucher"  class="btn-default">
+                                                    </div>
+                                                </div>                                    
+                                            </form>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="block-form block-order-total box-border wow fadeInRight" data-wow-duration="1s">
+                                            <h3><i class="fa fa-dollar"></i> Total</h3>
+                                            <hr>
+                                            <ul class="list-unstyled">
+                                                <li>Sub Total: <strong>$500.00</strong></li>
+                                                <li>Pricing Sharge: <strong>$10.00</strong></li>
+                                                <li>Promotion Discound: <strong>$5.00</strong></li>
+                                                <li>VAT: <strong>$10.00</strong></li>
+                                                <li><hr></li>
+                                                <li class="active"><b>Total:</b> <strong>$520.00</strong></li>                                    
+                                            </ul>
+                                            <input type="submit"  value="Contuine Shoping"  class="btn-default">
+                                            <a href="#"  class="btn-default">Checkout</a>
+                                        </div>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
+
+
+
         <!-- ===========================================
         =====        footer section               ====
         ============================================ -->        
@@ -499,7 +597,7 @@
 
 
                                     <div class="product-small-list-text">
-                                        <a href="#" class="product-name">iPhone 6</a>
+                                        <a href="#" class="product-name">HTC 3</a>
                                         <div class="product-rating">
                                             <div class="stars">
                                                 <span class="star"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
@@ -517,7 +615,7 @@
                                     </div>
 
                                     <div class="product-small-list-text">
-                                        <a href="#" class="product-name">Xperia Z3</a>
+                                        <a href="#" class="product-name">Samsung Galaxy S4</a>
                                         <div class="product-rating">
                                             <div class="stars">
                                                 <span class="star"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span><span class="star active"></span>
