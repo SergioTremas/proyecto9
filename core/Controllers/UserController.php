@@ -68,6 +68,9 @@ $reply->login=$objeto->login;
 if(!isset($objeto->level)){$objeto->level=1;}
 $reply->level=$objeto->level;
 
+if(!isset($objeto->idUser)){$objeto->idUser="";}
+$reply->idUser=$objeto->idUser;
+
 
 switch ($i) {
 
@@ -87,7 +90,7 @@ switch ($i) {
 
     case "delete":
         
-        $service->delete($id);
+        $service->delete($reply->idUser);
         
         break;
 

@@ -30,4 +30,9 @@ this.userservice.getAll().subscribe((data: User[]) => {
 
   }
 
+  delete(index, idUser) {
+    this.users.splice(index, 1);
+    this.userservice.delete(idUser).subscribe();
+  }
+
 }

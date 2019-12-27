@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
    login: Login;
 
-   loginOk = true;
+   loginOk = false;
    loginType = true;
    errorAdmin = false;
 
@@ -32,6 +32,33 @@ export class LoginComponent implements OnInit {
 
     console.log(this.getCookie());
     this.login = new Login();
+
+    this.user.getByToken().subscribe((data: User) => {
+
+      console.log(data, 'dentro de login ok' );
+      this.userM = data;
+
+      if(this.userM.rol === '2') {
+        this.service.setCookie('admin', 'ok');
+        console.log("admin ok user ok ");
+        this.errorAdmin=true;
+        this.loginOk=true;
+
+
+      }else{
+        console.log("user ok ");
+
+        this.errorAdmin=false;
+
+      }
+
+      this.loginOk = false;
+      this.loginError = false;
+
+
+
+
+    });
   }
 
   ngOnInit() {
@@ -68,24 +95,11 @@ export class LoginComponent implements OnInit {
       console.log(data, 'dentro de login ok' );
       this.userM = data;
 
-      if(this.userM.rol === '2') {
-        this.service.setCookie('admin', 'ok');
-        this.errorAdmin=true;
 
-      }else{
-
-        this.errorAdmin=false;
-      }
-
-      this.loginOk = false;
-      this.loginError = false;
-
-      return;
+        location.reload();
 
 
     });
-
-
 
 
     } else {

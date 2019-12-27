@@ -12,43 +12,40 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Nombre</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" #name>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label>Imagen</label>
-                                            <input type="file" class="form-control">
-                                        </div>
+                                        <app-upload></app-upload>
                                         <div class="col-md-6">
                                             <label>Categoria</label>
-                                            <select name="country" class="form-control">
-                                                    <option selected="selected">Country 1</option>
-                                                    <option>Country 2</option>
-                                                    <option>Country 3</option>
+                                            <select name="country" class="form-control" #category>
+                                                    <option selected="selected" [value]="0">Escoger Categoría</option>
+                                                    <option [value]="item.idCategory" *ngFor="let item of categories">{{item.nameCategory}}</option>
+
                                                 </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Categoria Padre</label>
-                                            <select name="country" class="form-control">
-                                                    <option selected="selected">Country 1</option>
-                                                    <option>Country 2</option>
-                                                    <option>Country 3</option>
+                                            <label>Comunidad Autonoma</label>
+                                            <select name="country" class="form-control" #ccaa>
+                                                    <option selected="selected" [value]="0" >Escoger CCAA</option>
+                                                    <option [value]="item.idCategory" *ngFor="let item of CCAA">{{item.nameCCAA}}</option>
+
                                                 </select>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label>Descripción</label>
-                                            <textarea class="form-control" name="">
-                                                </textarea>
+                                            <textarea class="form-control" type="text" #des></textarea>
+
                                         </div>
                                         <div class="col-md-2" style="float: right;">
                                             <div class="product light">
                                                 <div class="product-small-list-text-img">
-                                                    <img alt="" class="img-responsive" src="http://placehold.it/200x300">
+                                                    <img alt="" class="img-responsive" [src]="'assets/imgProducts/'+ product.photo">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <input type="submit" value="Añadir" class="btn-default">
+                                            <input (click)="inserProduct()" type="submit" value="Modificar" class="btn-default">
                                         </div>
                                     </div>
                                 </form>
@@ -66,32 +63,16 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Categoria</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" #newCat>
                                         </div>
                                         <div class="col-md-12">
-                                            <input type="submit" value="Añadir" class="btn-default">
+                                            <input (click)="insert(newCat.value)" type="submit" value="Añadir" class="btn-default">
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </article>
-                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="block-form box-border wow fadeInLeft animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
-                                <h3><i class="fa fa-tag"></i> Añadir Categoria Padre</h3>
-                                <hr>
-                                <form action="#" method="post">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Categoria</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <input type="submit" value="Añadir" class="btn-default">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </article>
+
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
@@ -101,45 +82,14 @@
                                 <h3><i class="fa fa-dollar"></i> Categorias</h3>
                                 <hr>
                                 <ul class="list-unstyled tags">
-                                    <li><a href="#">men</a></li>
-                                    <li><a href="#">women</a></li>
-                                    <li><a href="#">clothes</a></li>
-                                    <li><a href="#">top</a></li>
-                                    <li><a href="#">sale</a></li>
-                                    <li><a href="#">dresses</a></li>
-                                    <li><a href="#">short</a></li>
-                                    <li><a href="#">skirt</a></li>
-                                    <li><a href="#">top</a></li>
-                                    <li><a href="#">bestseller</a></li>
-                                    <li><a href="#">new</a></li>
+                                    <li *ngFor="let item of categories; let index= index"><a (click)="delete(item.idCategory,index)">{{item.nameCategory}}</a></li>
+
                                 </ul>
                             </div>
                         </article>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
-                    <div class="row">
-                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="block-form block-order-total box-border wow fadeInRight animated" data-wow-duration="1s" style="visibility: visible;-webkit-animation-duration: 1s; -moz-animation-duration: 1s; animation-duration: 1s;">
-                                <h3><i class="fa fa-dollar"></i> Categorias Padre</h3>
-                                <hr>
-                                <ul class="list-unstyled tags">
-                                    <li><a href="#">men</a></li>
-                                    <li><a href="#">women</a></li>
-                                    <li><a href="#">clothes</a></li>
-                                    <li><a href="#">top</a></li>
-                                    <li><a href="#">sale</a></li>
-                                    <li><a href="#">dresses</a></li>
-                                    <li><a href="#">short</a></li>
-                                    <li><a href="#">skirt</a></li>
-                                    <li><a href="#">top</a></li>
-                                    <li><a href="#">bestseller</a></li>
-                                    <li><a href="#">new</a></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ export class Products {
   idProduct: string;
   nameProduct: string;
   description: string;
-  photo: string;
+  photo: any;
   idCategory: string;
   nameCategory: string;
   valueAVG: number;

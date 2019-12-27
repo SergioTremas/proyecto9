@@ -108,5 +108,31 @@ getAll(){
 
 }
 
+delete(idUser) {
+
+  let user: User ;
+  user = new User();
+
+  user = new User();
+  user.idUser = idUser;
+  user.names = '';
+  user.surname = '';
+  user.email = '';
+  user.idCountry = '';
+  user.country = '';
+  user.idCity = '';
+  user.city = '';
+  user.numberAsses = '';
+  user.dataAdd = '';
+  user.rol = '';
+  user.login = '';
+  user.level = '';
+  user.action = 'delete';
+  user.token = '';
+
+  return this.http.post(this.url, JSON.stringify(user));
+
+}
+
 
 }

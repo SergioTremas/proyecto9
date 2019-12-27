@@ -62,7 +62,7 @@
 
 
     <div class="row">
-        <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
+        <div *ngIf="!userM.idUser" class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
             <div class="block-form box-border wow fadeInLeft animated" data-wow-duration="1s">
                 <h3><i class="fa fa-unlock"></i>Login</h3>
                 <p>Por favor introduce tu usuario y password</p>
@@ -101,19 +101,22 @@
                 <hr>
                 <a [routerLink]="['/newLogin']" class="btn-default-1">Register</a>
             </div>
-            <div *ngIf="errorAdmin">
-                <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
-                    <h3>Administración activada</h3>
-                </div>
-            </div>
 
-            <div *ngIf="!loginOk">
-                <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
-                    <h3>Login correcto!!, Hola {{userM.names}}</h3>
-                </div>
-            </div>
+
         </div>
+
+
     </div>
 
+    <div *ngIf="userM.idUser">
+        <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+            <h3>Login correcto!!, Hola {{userM.names}}</h3>
+        </div>
+    </div>
+    <div *ngIf="errorAdmin">
+        <div class="block-form box-border wow fadeInRight animated" data-wow-duration="1s">
+            <h3>Administración activada</h3>
+        </div>
+    </div>
 
 </section>

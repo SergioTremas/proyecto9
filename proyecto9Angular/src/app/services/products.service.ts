@@ -22,29 +22,26 @@ urlC: Url;
    }
 
     getProducts() {
+      const objeto = new Products();
+      objeto.action = 'getAll';
 
-
-
-      let objeto = new Products();
-      objeto.action='getAll';
-
-   return  this.http.post( this.urlC.urlCommon + 'ProductController.php',JSON.stringify(objeto));
+      return  this.http.post( this.urlC.urlCommon + 'ProductController.php', JSON.stringify(objeto));
 
   }
 
   getCategories() {
 
     // tslint:disable-next-line:max-line-length
-    let url =  this.urlC.urlCommon + 'CategoryController.php';
+    const url =  this.urlC.urlCommon + 'CategoryController.php';
 
 
     let category = new Category();
 
-     category.action="getAll";
-     category.idCategory="";
-     category.idCategoryFather="";
-     category.nameCategory="";
-     console.log(JSON.stringify(category));
+    category.action = 'getAll';
+    category.idCategory = '';
+    category.idCategoryFather = '';
+    category.nameCategory = '';
+    console.log(JSON.stringify(category));
 
     // return  this.http.get('http://localhost.org/proyecto9/core/Controllers/ProductController.php?id=0&name=0&description=0&photo=0&category=0&CCAA=0&action=getCategory');
 
@@ -115,6 +112,13 @@ urlC: Url;
 
     return this.http.post( url , JSON.stringify(product));
 
+  }
+
+  insert(product: Products){
+
+    product.action = "insert";
+
+    return this.http.post(this.urlC.urlCommon + 'ProductController.php', JSON.stringify(product));
   }
 
 }

@@ -49,6 +49,8 @@ import { InsertProductComponent } from './components/insert-product/insert-produ
 import { ListRevComponent } from './components/list-rev/list-rev.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { LevelPipe } from './components/list-users/level.pipe';
+import { UploadComponent } from './components/upload/upload.component';
+import {ImageUploadModule} from 'angular2-image-upload';
 
 
 @NgModule({
@@ -78,6 +80,7 @@ import { LevelPipe } from './components/list-users/level.pipe';
     ListRevComponent,
     UpdateProductComponent,
     LevelPipe,
+    UploadComponent,
 
 
 
@@ -90,10 +93,8 @@ import { LevelPipe } from './components/list-users/level.pipe';
     APP_ROUTING,
     FormsModule,
     HttpClientModule,
-
-
+    ImageUploadModule.forRoot(),
     CommonModule,
-
     AutoCompleteModule,
     TabViewModule,
     CodeHighlighterModule

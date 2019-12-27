@@ -33,7 +33,7 @@ class CategoryModel extends DataBase{
 
 	public function updateCategory(CategoryModel $model){
 
-		$sentence= "UPDATE `category` SET `nameCategory`= '$model->nameCategory',`idCategoryFhater`='$model->idCategoryFather' WHERE idCategory = $model->idCategory";
+		$sentence= "UPDATE `category` SET `idCategoryFhater`='$model->idCategoryFather' WHERE idCategory = $model->idCategory";
 
 		parent::insert($sentence);
 

@@ -5,44 +5,33 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 
 
 require($_SERVER['DOCUMENT_ROOT']."/proyecto9/config.php");
-require(CATEGORY_MODEL);
-require(CATEGORY_SERVICES);
+require(CATEGORYFHATER_MODEL);
+require(CATEGORYFATHER_SERVICES);
+
 
 $json = file_get_contents('php://input');
  $objeto = json_decode($json);
 
- if($json==""){
-     $objeto= new CategoryModel();
-     $objeto->idCategory=$_GET['idCategory'];
-     $objeto->idCategoryFather=$_GET['idCategoryFather'];
-     $objeto->nameCategory=$_GET['nameCategory'];
-     $objeto->action=$_GET['action'];
- }
-
-
-
+   
 
  $i =$objeto->action;
 
 
-$reply= new CategoryModel();
+$reply= new CategoryFatherModel();
 
-$service = new CategoryService();
+$service = new CategoryFatherService();
 
 
            $reply->idCategory=$objeto->idCategory;
-           $reply->nameCategory=$objeto->nameCategory;
-
-           if(!isset($objeto->idCategoryFather)){$objeto->idCategoryFather=0 ;}               
-           if($objeto->idCategoryFather==""){$objeto->idCategoryFather=0 ;}               
-           $reply->idCategoryFather= $objeto->idCategoryFather;
+           $reply->nameCCAA=$objeto->nameCCAA;       
+           
            
 
 switch ($i) {
 
     case "insert": //ok
 
-       $reply= $service->insertCat( $reply);
+      
        
         break;
 
@@ -76,6 +65,9 @@ switch ($i) {
      $reply =  $service->getByFather($idFather);
        
         break;
+
+    
+
    
 }
 

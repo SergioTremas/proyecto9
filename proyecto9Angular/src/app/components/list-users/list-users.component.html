@@ -34,7 +34,7 @@
                                 <th class="card_product_total">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let item of users">
+                        <tbody *ngFor="let item of users; let index= index">
                             <tr>
                                 <td class="card_product_name"><a href="#">{{item.names}}</a></td>
                                 <td class="card_product_model">{{item.surname}}</td>
@@ -55,7 +55,7 @@
 
                                         </select>
                                 </td>
-                                <td><a href="#" class="btn-default">Eliminar</a></td>
+                                <td><a class="btn-default" (click)="delete(index,item.idUser)">Eliminar</a></td>
                             </tr>
 
                         </tbody>

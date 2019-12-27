@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "angular2-image-upload": "^1.0.0-rc.2",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "jquery-hash": "^1.0.0",

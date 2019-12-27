@@ -36,6 +36,7 @@ class ProductModel extends DataBase{
 		$this->idProduct=$id1;
         $this->nameProduct= $model->nameProduct;
         $this->description=$model->description;
+        $this->idCategory=$model->idCategory;
         $this->photo=$model->photo;	
 
         $sentence="INSERT INTO `categoryproduct`(`idcategory`, `idproduct`) VALUES ('$this->idCategory','$this->idProduct')";

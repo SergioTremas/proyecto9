@@ -11,7 +11,7 @@ require(PRODUCT_MODEL);
 require(PRODUCT_MODEL_TRUE);
 require(USER_MODEL);
 
-
+    
 
     $json = file_get_contents('php://input');
  
@@ -35,7 +35,7 @@ if(!isset($producto->description)){$producto->description = "null" ;}
 $reply->description=$producto->description;
 if(!isset($producto->photo)){$producto->photo = "null" ;}
 $reply->photo=$producto->photo;
-if(!isset($producto->idCategory)){$producto->idCategory = "null" ;}
+if(!isset($producto->idCategory)){$producto->idCategory = 0 ;}
 $reply->idCategory=$producto->idCategory;
 
 
