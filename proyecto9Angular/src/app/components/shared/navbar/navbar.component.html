@@ -1,5 +1,5 @@
 <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" >Navbar</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
                             <a href="" class="account-menu-title"><i class="fa fa-user"></i>&nbsp; {{userModel.names}} <i class="fa fa-angle-down"></i> </a>
                             <ul class="list-unstyled account-menu-item">
                                 <li><a [routerLink]="['user']"><i class="fa fa-heart"></i>&nbsp; Modificar datos</a></li>
-                                <li><a [routerLink]="['valuesUser/',userModel.idUser]"><i class="fa fa-check"></i>&nbsp; Valoraciones</a></li>
+                                <li><a [routerLink]="['valuesUser/', userModel.idUser]"><i class="fa fa-check"></i>&nbsp; Valoraciones</a></li>
                             </ul>
                         </div>
                         <!-- /header-account menu -->
@@ -107,7 +107,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a [routerLink]="['/byletter', '', '*']">PRODUCTOS</a></li>
 
-                                <li [class.disabled]="userModel.rol!='2'" class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">USUARIOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                <li #users class="dropdown hidden"><a data-toggle="dropdown" class="dropdown-toggle">USUARIOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
                                     <ul class="dropdown-menu list-unstyled fadeInUp animated">
                                         <li class="dropdown-submenu">
                                             <a [routerLink]="['/listUsers']"> Listado Usuarios </a>
@@ -116,7 +116,7 @@
                                     </ul>
                                 </li>
 
-                                <li [class.disabled]="userModel.rol!='2'" class="dropdown "><a href="#" data-toggle="dropdown" class="dropdown-toggle">RESEÑAS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                <li #rev class="dropdown hidden"><a data-toggle="dropdown" class="dropdown-toggle">RESEÑAS <i class="fa fa-caret-right fa-rotate-45"></i></a>
                                     <ul class="dropdown-menu list-unstyled fadeInUp animated">
                                         <li class="dropdown-submenu">
                                             <a [routerLink]="['/listRev']"> Listado Reseñas </a>
@@ -124,7 +124,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li [class.disabled]="userModel.rol!='2'" class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">PRODUCTOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
+                                <li #products class="dropdown hidden"><a data-toggle="dropdown" class="dropdown-toggle">PRODUCTOS <i class="fa fa-caret-right fa-rotate-45"></i></a>
                                     <ul class="dropdown-menu list-unstyled fadeInUp animated">
                                         <li class="dropdown-submenu">
                                             <a [routerLink]="['/listProducts']"> Listado Productos </a>

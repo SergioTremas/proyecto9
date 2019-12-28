@@ -82,7 +82,7 @@ class ProductModel extends DataBase{
 
         try {
 	        
-	        $query = parent::prepare("SELECT categoryproduct.idproduct , product.nameproduct, product.desciption, 
+	        $query = parent::prepare("SELECT product.idproduct , product.nameproduct, product.desciption, 
             product.photo , categoryproduct.idcategory, category.namecategory, AVG(assesment.asses) FROM `categoryproduct` 
             inner JOIN category on categoryproduct.idcategory= category.idcategory INNER JOIN product on 
             categoryproduct.idproduct=product.idproduct INNER JOIN assesment ON 
@@ -99,7 +99,11 @@ class ProductModel extends DataBase{
             $this->photo=$x[3];
             $this->idCategory=$x[4];
             $this->nameCategory=$x[5];
+            
             $this->valueAVG=$this->getAVG($x[0]);
+            if($this->valueAVG==null){
+                $this->valueAVG=2.5;}
+            
 
 		   }
 

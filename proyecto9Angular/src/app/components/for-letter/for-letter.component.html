@@ -47,7 +47,7 @@
                                 </figure>
                                 <div class="product-caption">
                                     <div class="block-name">
-                                        <a href="#" class="product-name">{{item.nameProduct}}</a>
+                                        <a [routerLink]="['/singleProduct', item.idProduct]" class="product-name">{{item.nameProduct}}</a>
                                         <div class="product-rating">
                                             <div class="stars">
                                                 <span [class.active]="item.valueAVG>4" class="star "></span><span [class.active]="item.valueAVG>3" class="star  "></span><span [class.active]="item.valueAVG>2" class="star  "></span><span [class.active]="item.valueAVG>1"

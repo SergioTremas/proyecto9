@@ -19,6 +19,12 @@ export class NavbarComponent implements OnInit {
   @ViewChild('userMenu') userMenu: ElementRef;
   @ViewChild('selectedCategory') select: ElementRef;
 
+  @ViewChild('products') products: ElementRef;
+
+  @ViewChild('users') users: ElementRef;
+  @ViewChild('rev') rew: ElementRef;
+
+
   Categories: Category[] = [];
   cat = '*';
   letter = '*';
@@ -31,17 +37,31 @@ export class NavbarComponent implements OnInit {
     if (this.userLogeado()) {
 
       this.user.getByToken().subscribe((data: any) => {
-        console.log(data);
-        this.userModel = data;
 
+        this.userModel = data;
+        if (this.userModel.rol === '2') {
+          this.render.removeClass(this.rew.nativeElement, 'hidden');
+          this.render.removeClass(this.users.nativeElement, 'hidden');
+          this.render.removeClass(this.products.nativeElement, 'hidden');
+
+
+        }
         this.user.generarCookieIDUser(this.userModel.idUser);
         this.render.removeClass(this.userMenu.nativeElement, 'hidden');
 
+        console.log(this.userModel.rol, 'kdjbvksjfbfkjfsbkjbfdskjv');
+
+
+
       });
       console.log("dentro navbar ngonit ", this.userModel);
+    }else{
+      this.userModel = null;
+      console.log(this.userModel);
+
     }
 
-    this.product.getCategories().subscribe( (data:any)=>{
+    this.product.getCategories().subscribe( (data: any) => {
 
     this.Categories = data;
 
@@ -121,8 +141,12 @@ renderUser() {
 
   deleteToken() {
 
+    this.render.addClass(this.rew.nativeElement, 'hidden');
+    this.render.addClass(this.users.nativeElement, 'hidden');
+    this.render.addClass(this.products.nativeElement, 'hidden');
 
-    this.userModel= null;
+
+    this.userModel = null;
 
     const token= this.login.getCookie('tokenLogin');
     this.login.deleteCookie(token);
